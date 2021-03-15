@@ -1,4 +1,4 @@
-# The demo frontend for SubDAO Network
+# The demo frontend for Apron Network
 
 ## Available Scripts
 

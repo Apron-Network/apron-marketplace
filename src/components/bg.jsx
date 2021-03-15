@@ -4,7 +4,7 @@ import options from "../components/home/particles";
 
 
 export default function Bg() {
-    const [particles, setParticles] = useState(true);
+    const [particles, setParticles] = useState(false);
 
     useEffect(() => {
         tsParticles.loadFromArray("tsparticles", [
