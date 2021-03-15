@@ -1,0 +1,19 @@
+.bgTop{
+  height: 100%;
+}
+.particlesBg{
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 1;
+}
+#tsparticles{
+  width: 100vw;
+  height: 100vh;
+  background:#000 url('../images/bg2.png') no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  z-index: -1;
+  position: absolute;
+
+}

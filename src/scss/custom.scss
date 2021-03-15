@@ -1,0 +1,27 @@
+$primary:      #205fee !default;
+
+
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+html,body{
+  width:100%;
+  height:100%;
+  background:#000;
+}
+#root{
+  height: 100%;
+}
+ul,li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@import "src/scss/App";
+@import "src/scss/particles";
+@import "src/scss/border";
+@import "src/scss/service";
+@import "src/scss/header";
+//@import "src/scss/About";
+//@import "src/scss/loading";
+

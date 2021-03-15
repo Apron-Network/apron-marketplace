@@ -1,0 +1,143 @@
+.appBg{
+  position: relative;
+  height: 100%;
+  background:#000 url('../images/bg2.png') no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+.rightText{
+  text-align: right;
+}
+.header-button{
+  margin-right: -15px;
+}
+.maincontent{
+  color: rgba(255,255,255,0.7);
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  position: absolute;
+  overflow-y: auto;
+}
+
+.contentindex{
+  width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.contentindex:after,section:after{
+  clear: both;
+  display: block;
+  content: '';
+}
+
+.logo{
+  //margin-left: -15px;
+  img{
+    width: 100px;
+    //padding-left: 20px;
+  }
+}
+h4{
+  color: #ffffff;
+  font-size: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  margin-bottom: 10px;
+}
+.blocks{
+  ul{
+    height: 114px;
+    overflow-y: auto;
+  }
+  li{
+    line-height: 2em;
+  }
+  a{
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: middle;
+
+  }
+  span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+  }
+}
+
+
+.list{
+  height: 239px;
+  overflow-y: auto;
+
+  li{
+    margin: 20px 0;
+    cursor: pointer;
+    line-height: 1.5em;
+    &:after{
+      clear: both;
+      display: block;
+      content:'';
+    }
+    img{
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      float: left;
+      margin-top: 20px;
+    }
+    .title{
+      font-weight: bold;
+    }
+    .rht{
+      float: left;
+      margin-left: 10px;
+      //width: 87%;
+    }
+  }
+}
+
+
+.parent {
+  width: 300px;
+  height: 200px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.parent::-webkit-scrollbar {
+  display: none;
+}
+.child {
+  height: auto;
+}
+
+.child li {
+  height: 30px;
+  margin: 2px 0;
+}
+
+#main{
+  width:100%;
+  height: 300px;
+}
+
+.info{
+  li{
+    line-height: 1.5em;
+    margin-bottom: 10px;
+  }
+  .rht{
+    color: #ffffff;
+    word-wrap: break-word;
+    word-break: break-all;
+
+  }
+}
+
