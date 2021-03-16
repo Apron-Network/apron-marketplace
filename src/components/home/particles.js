@@ -1,8 +1,8 @@
-const options =
-    {
+const options = {
+        "fps_limit": 30,
         "particles": {
             "number": {
-                "value": 240,
+                "value":60,
                 "density": {
                     "enable": true,
                     "value_area": 800
