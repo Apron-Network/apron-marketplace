@@ -5,7 +5,7 @@ import {
 } from '@polkadot/extension-dapp';
 
 const accountlist = async () => {
-    const allInjected = await web3Enable('SubDAO');
+    const allInjected = await web3Enable('Apron');
 
     if (allInjected.length === 0) {
         console.error("!!!!! No wallet extention detected!!");
@@ -20,7 +20,7 @@ const accountlist = async () => {
 }
 const accountAddress = async () =>{
     let accountAddress;
-    const allInjected = await web3Enable('SubDAO');
+    const allInjected = await web3Enable('Apron');
     if (allInjected.length === 0) {
         console.error("!!!!! No wallet extention detected!!");
         return;
@@ -36,7 +36,7 @@ const accountAddress = async () =>{
 }
 const accountName = async () =>{
     let accountName;
-    const allInjected = await web3Enable('SubDAO');
+    const allInjected = await web3Enable('Apron');
     if (allInjected.length === 0) {
         console.error("!!!!! No wallet extention detected!!");
         return;
