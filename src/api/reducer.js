@@ -44,7 +44,7 @@ const reducer = (state, action) => {
             return { ...state, basecontract: null, basecontractState: 'ERROR' };
 
         case 'SET_MSG':
-            return { ...state, msg: action.payload };
+            return { ...state, message: action.payload };
 
 
         default:

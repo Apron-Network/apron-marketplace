@@ -40,11 +40,22 @@ const connectGateway = async (state, dispatch) => {
     const socket = new WebSocket(gateway_server);
 
     socket.onopen = function (event) {
-        // socket.send('connect');
+        // socket.send('Websocket connect');
         console.log('Websocket connect');
     };
     socket.onmessage= function (event) {
-        dispatch({type: 'SET_MSG', payload: event.data})
+
+        const {message}  = state;
+        // let obj ={ts:1615989354512,service_name:"test_httpbin_service",user_key:"70bf85ef-e2f9-4d30-8655-b2e69b7480b1",request_ip:"111.33.215.83",request_path:"anything/foobar"};
+        let obj = event.data;
+        let list = message!= null ? message:[];
+        let arr = list.find(function(item, index, arr) {
+            return item.ts === obj.ts;
+        });
+        if ( !arr){
+            list.push(obj);
+            dispatch({type: 'SET_MSG', payload:list})
+        }
         console.log("Received Message:================= " + event.data);
     };
 
