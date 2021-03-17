@@ -29,8 +29,8 @@ export default function Account(props) {
     useEffect(() => {
         if(basecontract==null || !userkey) return;
         const queryList = async () => {
-            // await apiInterface.base.getList(basecontract,userkey).then(data => {
-            await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
+            await apiInterface.base.getList(basecontract,userkey).then(data => {
+            // await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
                 if (data) {
                     setlist(data)
                 }
