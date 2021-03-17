@@ -1,5 +1,9 @@
 table{
   width: 100%;
+  .hashref{
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 td,th{
   padding: 20px;
@@ -7,6 +11,7 @@ td,th{
 }
 th{
   background:rgba(255,255,255,0.2);
+  white-space:nowrap;
 }
 
 .brdr{

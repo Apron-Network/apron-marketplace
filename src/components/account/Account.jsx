@@ -5,7 +5,7 @@ import AccountTable from "./accountTable";
 import apiInterface from "../../api";
 import {useSubstrate} from "../../api/contracts";
 
-export default function Account() {
+export default function Account(props) {
     const {state,dispatch} = useSubstrate();
     const {basecontract,maincontract} = state;
 
@@ -29,8 +29,8 @@ export default function Account() {
     useEffect(() => {
         if(basecontract==null || !userkey) return;
         const queryList = async () => {
-            await apiInterface.base.getList(basecontract,userkey).then(data => {
-            // await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
+            // await apiInterface.base.getList(basecontract,userkey).then(data => {
+            await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
                 if (data) {
                     setlist(data)
                 }
@@ -55,7 +55,7 @@ export default function Account() {
                 </div>
             </div>
             {
-                !!list.length &&<AccountTable list={list}/>
+                !!list.length &&<AccountTable list={list} history={props.history}/>
             }
 
         </div>
