@@ -4,8 +4,9 @@ import {
     web3FromAddress
 } from '@polkadot/extension-dapp';
 
+const  {mainAddress} = window;
 const accountlist = async () => {
-    const allInjected = await web3Enable('Apron');
+    const allInjected = await web3Enable(`${mainAddress.name}`);
 
     if (allInjected.length === 0) {
         console.error("!!!!! No wallet extention detected!!");
@@ -20,7 +21,7 @@ const accountlist = async () => {
 }
 const accountAddress = async () =>{
     let accountAddress;
-    const allInjected = await web3Enable('Apron');
+    const allInjected = await web3Enable(`${mainAddress.name}`);
     if (allInjected.length === 0) {
         console.error("!!!!! No wallet extention detected!!");
         return;
@@ -36,7 +37,7 @@ const accountAddress = async () =>{
 }
 const accountName = async () =>{
     let accountName;
-    const allInjected = await web3Enable('Apron');
+    const allInjected = await web3Enable(`${mainAddress.name}`);
     if (allInjected.length === 0) {
         console.error("!!!!! No wallet extention detected!!");
         return;

@@ -43,6 +43,10 @@ const reducer = (state, action) => {
         case 'BASE_ERROR':
             return { ...state, basecontract: null, basecontractState: 'ERROR' };
 
+        case 'SET_MSG':
+            return { ...state, msg: action.payload };
+
+
         default:
             throw new Error(`Unknown type: ${action.type}`);
     }

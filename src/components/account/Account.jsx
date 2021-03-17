@@ -5,16 +5,12 @@ import AccountTable from "./accountTable";
 import apiInterface from "../../api";
 import {useSubstrate} from "../../api/contracts";
 
-export default function Account(props) {
+export default function Account() {
     const {state,dispatch} = useSubstrate();
-    const {basecontract} = state;
+    const {basecontract,maincontract} = state;
 
     const [userkey, setUserkey] = useState('');
-    const [list, setlist] = useState([{value:235, name:'video'},
-        {value:274, name:'advertise'},
-        {value:310, name:'email'},
-        {value:335, name:'direct'},
-        {value:400, name:'seo'}]);
+    const [list, setlist] = useState([]);
     useEffect(() => {
         const queryKey = async () => {
             await apiInterface.user.getUserkey().then(data => {
@@ -34,15 +30,16 @@ export default function Account(props) {
         if(basecontract==null || !userkey) return;
         const queryList = async () => {
             await apiInterface.base.getList(basecontract,userkey).then(data => {
+            // await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
                 if (data) {
-                    console.log("==============---------======='",data)
-                    // setUserkey(data)
+                    setlist(data)
                 }
             });
         };
         queryList();
 
     }, [userkey,basecontract]);
+
 
     return(
         <div>
@@ -51,10 +48,16 @@ export default function Account(props) {
                     <Info />
                 </div>
                 <div className="col-8">
-                    <InfoEcharts optionlist={list}/>
+                    {
+                        !!list.length &&<InfoEcharts optionlist={list} maincontract={maincontract}/>
+                    }
+
                 </div>
             </div>
-            <AccountTable />
+            {
+                !!list.length &&<AccountTable list={list}/>
+            }
+
         </div>
     )
 }

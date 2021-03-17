@@ -2,7 +2,7 @@ import ConnectContract from './connectContract';
 let loadMain = false;
 let maincontract;
 
-const mainAddress = window.mainAddress;
+const  {mainAddress} = window;
 export default async function mainConnect(state, dispatch) {
 
     const {apiState, api, maincontractState} = state;

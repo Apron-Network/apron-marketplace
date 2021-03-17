@@ -14,7 +14,6 @@ export default function Marketlist(props) {
         if(maincontract == null && apiState === 'READY'){
             dispatch({type: 'LOAD_MAINCONTRACT'});
         }
-
         const queryList = async () => {
             await api.main.queryServiceByUuid(maincontract,props.match.params.id).then(data => {
                 if (data) {

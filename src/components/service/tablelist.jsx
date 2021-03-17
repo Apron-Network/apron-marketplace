@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 export default function Tablelist(props) {
     const {info} = props;
     const list = JSON.parse(info.price_plan);
-    console.log(list)
     return(<div className="borderBR">
         <div className="contenttable">
             <table cellPadding="0" cellSpacing="0">

@@ -5,7 +5,10 @@ import mainConnect from './mainContract'
 
 import {ApiPromise, WsProvider} from '@polkadot/api';
 
-const ws_server = 'ws://47.245.33.199:9944';
+const  {mainAddress} = window;
+
+const ws_server = `ws://${mainAddress.basepath}:9944`;
+const gateway_server = `ws://${mainAddress.basepath}:8082/detailed_logs`;
 
 const SubstrateContext = React.createContext();
 
@@ -33,6 +36,20 @@ const connect = async (state, dispatch) => {
 
 };
 
+const connectGateway = async (state, dispatch) => {
+    const socket = new WebSocket(gateway_server);
+
+    socket.onopen = function (event) {
+        // socket.send('connect');
+        console.log('Websocket connect');
+    };
+    socket.onmessage= function (event) {
+        dispatch({type: 'SET_MSG', payload: event.data})
+        console.log("Received Message:================= " + event.data);
+    };
+
+};
+
 const initState = {...INIT_STATE};
 
 const SubstrateContextProvider = (props) => {
@@ -40,7 +57,8 @@ const SubstrateContextProvider = (props) => {
     console.log("=====state=====",state);
 
     connect(state, dispatch);
-    mainConnect(state, dispatch)
+    connectGateway(state, dispatch);
+    mainConnect(state, dispatch);
 
 
     return <SubstrateContext.Provider value={{state,dispatch}}>

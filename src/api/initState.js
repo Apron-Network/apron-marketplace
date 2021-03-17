@@ -13,5 +13,7 @@ module.exports = {
     basecontractState: null,
     basecontract:null,
 
+    message:null
+
 
 };

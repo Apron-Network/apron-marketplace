@@ -4,27 +4,29 @@ import  { Header } from '@polkadot/types/interfaces';
 
 export default function Blocks() {
     const {state,dispatch} = useSubstrate();
-    const {api} = state;
+    let {api} = state;
 
     const [list, setlist] = useState([]);
 
     let obj={};
     let arr=[];
-    useEffect(async () => {
+
+    useEffect( () => {
         if(api == null )return;
-
-        api.rpc.chain.subscribeNewHeads((lastHead=Header)=> {
-
-            let result = JSON.parse(JSON.stringify(lastHead));
-            obj ={
-                number: result.number,
-                hash:lastHead.hash.toHex()
-            };
-            arr.unshift(obj);
-            setlist([...arr]);
-
-        });
-
+        let unmounted = false;
+        const subscribeNewHeads = async () => {
+            api.rpc.chain.subscribeNewHeads((lastHead=Header)=> {
+                let result = JSON.parse(JSON.stringify(lastHead));
+                obj ={
+                    number: result.number,
+                    hash:lastHead.hash.toHex()
+                };
+                arr.unshift(obj);
+                if (!unmounted) setlist([...arr]);
+            });
+        };
+       subscribeNewHeads();
+        return () => { unmounted = true };
     }, [api]);
     return(
         <div className="rain">

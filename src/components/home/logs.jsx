@@ -1,7 +1,14 @@
 import React, {useState, useEffect,useRef} from 'react';
+import {useSubstrate} from "../../api/contracts";
 
 export default function Logs() {
-    const [list] = useState([1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13]);
+
+    const {state, dispatch} = useSubstrate();
+    const {message} = state;
+
+
+    // const [list,setList] = useState([1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13]);
+    const [list,setList] = useState([]);
 
     const [isScrolle, setIsScrolle] = useState(true);
 
@@ -27,6 +34,15 @@ export default function Logs() {
             clearTimeout(timer);
         };
     }, [isScrolle]);
+
+    useEffect(() => {
+        if(!message)return;
+        let arr = [];
+        arr = list;
+        arr.push(message)
+        // arr.push({ts:1615890546496,service_name:"1615890545354",user_key:"e5697eb2-060f-4d97-b3d0-789eb53af017",request_ip:"127.0.0.1",request_path:"anything/aaa"})
+        setList([...arr])
+    }, []);
     const hoverHandler = (flag) => setIsScrolle(flag);
 
 
@@ -38,11 +54,11 @@ export default function Logs() {
                     <div className='child' ref={childDom1}>
                         {list.map((item) => (
                             <li
-                                key={item}
+                                key={item.service_name}
                                 onMouseOver={() => hoverHandler(false)}
                                 onMouseLeave={() => hoverHandler(true)}
                             >
-                                {item}runoob@runoob:~$ docker logs -f mynginx
+                               [{item.service_name}]({item.user_key}) {item.request_path} {item.request_path}
                             </li>
                         ))}
                     </div>

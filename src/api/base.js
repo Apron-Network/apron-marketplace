@@ -2,7 +2,7 @@ import ConnectContract from './connectContract';
 import publicJs from "../utils/publicJs";
 import Accounts from "./Account";
 
-const statistics = window.statistics;
+const {mainAddress }= window;
 let basecontract;
 const InitBase = async (state,dispatch) => {
 
@@ -12,7 +12,7 @@ const InitBase = async (state,dispatch) => {
     if (apiState !== 'READY' || !account ) return;
 
     try {
-        basecontract = await ConnectContract(api, 'base', statistics);
+        basecontract = await ConnectContract(api, 'base', mainAddress.statistics);
         dispatch({ type: 'SET_BASE', payload: basecontract });
 
     } catch (e) {

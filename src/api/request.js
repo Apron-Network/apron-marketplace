@@ -12,28 +12,19 @@ const axiosInstance = () => {
       responseType: 'json',
     });
   }
-  instance.interceptors.request.use((request) => {
-    // store.state.isloadingShow = true;
-    return request;
-  });
+  // instance.interceptors.request.use((request) => request);
   instance.interceptors.response.use(
-    (response) => {
-      // store.state.isloadingShow = false;
-
-      return response.data ? response.data : response;
-    }, (err) => {
-      if (err.response && err.response.status === 405) {
-        // router.push('/loginRegister/login');
-        // store.state.isloadingShow = false;
-      }
-    },
+    (response) => response.data ? response.data : response
+    , (err) => console.log(err)
+    ,
   );
 
   return instance;
 };
 
+const  {mainAddress} = window;
 
-const host = `${document.location.protocol}//47.245.33.199:8082/`;
+const host = `${document.location.protocol}//${mainAddress.basepath}:8082/`;
 
 const get = urlMethod => axiosInstance(host + urlMethod).get(host + urlMethod);
 
