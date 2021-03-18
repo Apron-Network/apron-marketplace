@@ -29,12 +29,18 @@ export default function Account(props) {
     useEffect(() => {
         if(basecontract==null || !userkey) return;
         const queryList = async () => {
-            await apiInterface.base.getList(basecontract,userkey).then(data => {
-            // await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
-                if (data) {
-                    setlist(data)
-                }
-            });
+
+            let arr=[];
+
+            for(let item of userkey){
+                await apiInterface.base.getList(basecontract,item).then(data => {
+                // await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
+                    if (data && data.length) {
+                        data.map(i=> arr.push(i))
+                    }
+                });
+            }
+            setlist(arr);
         };
         queryList();
 

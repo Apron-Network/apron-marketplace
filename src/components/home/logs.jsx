@@ -6,7 +6,6 @@ export default function Logs() {
     const {state, dispatch} = useSubstrate();
     const {message} = state;
 
-    // const [list,setList] = useState([1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13]);
     const [list,setList] = useState([]);
 
     const [isScrolle, setIsScrolle] = useState(true);
