@@ -53,7 +53,7 @@ export default function Headertop(props) {
             <div className='col-6 rightText'>
                 <div className="header-button">
                     {
-                        !selected.length && !allList.length &&
+                        selected && !selected.length && !allList.length &&
                         <button className='button1 buttonHeader'  onClick={connectWallet}>Connect Wallet</button>
                     }
                     {!selected.length && !!allList.length &&

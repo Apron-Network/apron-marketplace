@@ -19,7 +19,7 @@ export default function Tablelist(props) {
                     list.map((item,index)=>(
                         <tr key={`service_${index}`}>
                             <td>{item.name}</td>
-                            <td>{item.desc}</td>
+                            <td>{item.description}</td>
                             <td>{item.type}</td>
                             <td>{item.price},249</td>
                         </tr>

@@ -5,16 +5,23 @@ import AccountTable from "./accountTable";
 import apiInterface from "../../api";
 import {useSubstrate} from "../../api/contracts";
 
+import Loading from "../loading/Loading";
+
+
 export default function Account(props) {
     const {state,dispatch} = useSubstrate();
     const {basecontract,maincontract} = state;
 
+    const [loading, setLoading] = useState(false);
     const [userkey, setUserkey] = useState('');
     const [list, setlist] = useState([]);
     useEffect(() => {
+
         const queryKey = async () => {
+            setLoading(true);
             await apiInterface.user.getUserkey().then(data => {
                 if (data) {
+                    console.log("======userkey====",data)
                     setUserkey(data);
                 }
             });
@@ -29,9 +36,7 @@ export default function Account(props) {
     useEffect(() => {
         if(basecontract==null || !userkey) return;
         const queryList = async () => {
-
             let arr=[];
-
             for(let item of userkey){
                 await apiInterface.base.getList(basecontract,item).then(data => {
                 // await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
@@ -41,14 +46,20 @@ export default function Account(props) {
                 });
             }
             setlist(arr);
+
         };
         queryList();
 
     }, [userkey,basecontract]);
 
+    useEffect(() => {
+        if(basecontract==null || !userkey || !list.length) return;
+        setLoading(false);
+    }, [list]);
 
     return(
         <div>
+            <Loading showLoading={loading} tips='Initialize account page'/>
             <div className="row">
                 <div className="col-4">
                     <Info />
