@@ -60,8 +60,9 @@ export default function AccountTable(props) {
                                 {/*<td>{item.service_uuid}</td>*/}
                                 <td>{formatData(item.start_time)}</td>
                                 <td>{formatData(item.end_time)}</td>
-                                <td>{item.usage}</td>
-                                <td>{item.price_plan}</td>
+                                <td>{item.sum}</td>
+                                {/*<td>{item.price_plan}</td>*/}
+                                <td>post-paid</td>
                                 <td>{item.cost}</td>
                             </tr>
                         ))

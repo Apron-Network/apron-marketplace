@@ -73,7 +73,7 @@ class InfoEcharts extends Component {
                    await apiInterface.main.queryServiceByUuid(this.props.maincontract,item.service_uuid).then(data=>{
                         let obj= {
                             name:data.name,
-                            value:parseInt(item.cost)
+                            value:parseInt(item.sum)
                         };
                         arr.push(obj);
                     });

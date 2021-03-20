@@ -1,60 +1,61 @@
 import React, {useState, useEffect,useRef} from 'react';
-import {useSubstrate} from "../../api/contracts";
+
+const  {mainAddress} = window;
+const gateway_server = `ws://${mainAddress.basepath}:8082/detailed_logs`;
 
 export default function Logs() {
 
-    const {state, dispatch} = useSubstrate();
-    const {message} = state;
-
     const [list,setList] = useState([]);
 
-    const [isScrolle, setIsScrolle] = useState(true);
 
-    const speed = 30;
     const warper = useRef();
-    const childDom1 = useRef();
-    const childDom2 = useRef();
 
-    useEffect(() => {
-        if(!warper || !warper.current)return;
-        childDom2.current.innerHTML = childDom1.current.innerHTML;
-        let timer;
-        if (isScrolle) {
-            timer = setInterval(
-                () =>
-                    warper.current.scrollTop >= childDom1.current.scrollHeight
-                        ? (warper.current.scrollTop = 0)
-                        : warper.current.scrollTop++,
-                speed
-            );
+    let socket = new WebSocket(gateway_server);
+
+    socket.onopen = function (event) {
+        console.log('Websocket connect');
+
+    };
+    socket.onmessage = function (event) {
+        let obj = JSON.parse(event.data);
+        let mylist = list;
+
+        let arr = mylist.filter((item) =>item.ts === obj.ts);
+        if ( !arr || !arr.length){
+            mylist.push(obj);
+            if(mylist.length>10){
+                mylist.shift();
+            }
+            setList([...mylist]);
+            if(warper.current!=null){
+                warper.current.scrollTop = warper.current.scrollHeight;
+            }
+
         }
-        return () => {
-            clearTimeout(timer);
-        };
-    }, [isScrolle]);
+    };
 
-    useEffect(() => {
-        if(message == null)return;
-        setList(message)
-    }, [message]);
-    const hoverHandler = (flag) => setIsScrolle(flag);
+    // useEffect(()=>{
+    //
+    //
+    //     return ()=>{
+    //         socket = null;
+    //     }
+    // },[]);
     return (
         <div className="rain">
             <div className="contentbg">
                 <h4>LOGS</h4>
-                <div className='parent' ref={warper}>
-                    <div className='child' ref={childDom1}>
-                        {list.map((item) => (
+                <div className='parent' id='scrollBrdr' ref={warper}>
+                    <div className='child'>
+                        { list.map((item) => (
                             <li
                                 key={`ts_${item.ts}`}
-                                onMouseOver={() => hoverHandler(false)}
-                                onMouseLeave={() => hoverHandler(true)}
                             >
-                               [{item.service_name}]({item.user_key}) {item.request_ip} {item.request_path}
+                                [{new Date(parseInt(item.ts)).toLocaleString()}]{item.service_name}({item.user_key}) {item.request_ip} {item.request_path}
                             </li>
                         ))}
                     </div>
-                    <div className='child' ref={childDom2}></div>
+                    <div className='child'/>
                 </div>
             </div>
         </div>

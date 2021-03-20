@@ -58,6 +58,7 @@ export default function Marketlist(props) {
         // });
 
         await apiInterface.main.addService(obj).then( (data) => {
+            console.log("====",data)
             if(data){
                 window.location.reload();
             }
@@ -185,7 +186,7 @@ export default function Marketlist(props) {
                             </InputGroup>
                             {tokenlist.map((i, index) => (
 
-                                <div key={index} className="pricePlan">
+                                <div key={`tokenlist_${index}`} className="pricePlan">
                                     <div className="row">
                                         <div className="col-6">
                                             <InputGroup className="mb-3">
@@ -260,7 +261,7 @@ export default function Marketlist(props) {
 
                 <ul>
                     {
-                        list && list.map(item=>(<li onClick={()=>handleToservice(item.uuid)} key={item.uuid}>
+                        list && list.map((item,index)=>(<li onClick={()=>handleToservice(item.uuid)} key={`item_${index}`}>
                             <div className="row">
                                 <div className="col-1">
                                     <img

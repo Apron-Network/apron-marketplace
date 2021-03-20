@@ -34,6 +34,7 @@ const listServicesProvider = async (maincontract,id) => {
     data = publicJs.formatResult(data);
     return data;
 };
+
 const setAddService = async (maincontract,obj,cb) => {
 
     const AccountId = await Accounts.accountAddress();

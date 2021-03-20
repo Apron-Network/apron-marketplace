@@ -53,7 +53,7 @@ export default function Info() {
                     <li>
                         <div className="row">
                             <div className="col-3 lft">Expiration</div>
-                            <div className="col-9 rht">0</div>
+                            <div className="col-9 rht">2077-12-31</div>
                         </div>
                     </li>
 

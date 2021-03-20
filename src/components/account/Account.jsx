@@ -39,13 +39,37 @@ export default function Account(props) {
             let arr=[];
             for(let item of userkey){
                 await apiInterface.base.getList(basecontract,item).then(data => {
-                // await apiInterface.base.getList(basecontract,'4582fd9-ebb7-4647-a2d2-d01374782107').then(data => {
                     if (data && data.length) {
                         data.map(i=> arr.push(i))
                     }
+
                 });
             }
-            setlist(arr);
+
+            let myobj=[];
+            arr.map((item,index)=>{
+                if(index===0){
+                    myobj.push(item);
+                }else{
+                    let temp = myobj.find(itemObj=>itemObj.service_uuid === item.service_uuid);
+                    if(!temp){
+                        myobj.push(item);
+                    }
+                }
+            });
+
+            for(let i = 0;i <myobj.length;i++){
+                let sum=0;
+                for(let j=0;j<arr.length;j++){
+                    if(myobj[i].service_uuid === arr[j].service_uuid){
+                        sum+= parseInt(arr[j].usage);
+                    }
+                    myobj[i].sum = sum;
+                }
+            }
+
+
+            setlist(myobj);
 
         };
         queryList();
