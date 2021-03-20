@@ -21,6 +21,7 @@ export default function Marketlist(props) {
 
     const copyId = (url) => {
         const cInput = document.createElement('input');
+        cInput.type = 'hidden';
         cInput.value = url;
         document.body.appendChild(cInput);
         cInput.select();
