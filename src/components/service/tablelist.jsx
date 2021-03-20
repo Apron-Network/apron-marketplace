@@ -21,7 +21,7 @@ export default function Tablelist(props) {
                             <td>{item.name}</td>
                             <td>{item.description}</td>
                             <td>{item.type}</td>
-                            <td>{item.price},249</td>
+                            <td>{item.price}</td>
                         </tr>
                     ))
                 }
