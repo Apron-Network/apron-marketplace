@@ -6,6 +6,7 @@ import apiInterface from "../../api";
 import {useSubstrate} from "../../api/contracts";
 
 import Loading from "../loading/Loading";
+import Accounts from "../../api/Account";
 
 
 export default function Account(props) {
@@ -13,38 +14,43 @@ export default function Account(props) {
     const {basecontract,maincontract} = state;
 
     const [loading, setLoading] = useState(false);
-    const [userkey, setUserkey] = useState('');
+    // const [userkey, setUserkey] = useState('');
     const [list, setlist] = useState([]);
     useEffect(() => {
 
-        const queryKey = async () => {
-            setLoading(true);
-            await apiInterface.user.getUserkey().then(data => {
-                if (data) {
-                    console.log("======userkey====",data)
-                    setUserkey(data);
-                }
-            });
-        };
-        queryKey();
+        // const queryKey = async () => {
+        //     setLoading(true);
+        //     await apiInterface.user.getUserkey().then(data => {
+        //         if (data) {
+        //             console.log("======userkey====",data)
+        //             setUserkey(data);
+        //         }
+        //     });
+        // };
+        // queryKey();
 
         const setInitBase = async () => {
+            setLoading(true);
             await apiInterface.base.InitBase(state, dispatch);
         };
         setInitBase();
     }, []);
     useEffect(() => {
-        if(basecontract==null || !userkey) return;
+        // if(basecontract==null || !userkey) return;
+        if(basecontract==null ) return;
         const queryList = async () => {
             let arr=[];
-            for(let item of userkey){
-                await apiInterface.base.getList(basecontract,item).then(data => {
+            // for(let item of userkey){
+            //     await apiInterface.base.getList(basecontract,item).then(data => {
+            const AccountId = await Accounts.accountAddress();
+            console.log()
+                await apiInterface.base.getList(basecontract,AccountId).then(data => {
                     if (data && data.length) {
                         data.map(i=> arr.push(i))
                     }
 
                 });
-            }
+            // }
 
             let myobj=[];
             arr.map((item,index)=>{
@@ -74,10 +80,12 @@ export default function Account(props) {
         };
         queryList();
 
-    }, [userkey,basecontract]);
+    // }, [userkey,basecontract]);
+    }, [basecontract]);
 
     useEffect(() => {
-        if(basecontract==null || !userkey || !list.length) return;
+        // if(basecontract==null || !userkey || !list.length) return;
+        if(basecontract==null  || !list.length) return;
         setLoading(false);
     }, [list]);
 
