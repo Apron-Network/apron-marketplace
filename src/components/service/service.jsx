@@ -21,11 +21,15 @@ export default function Marketlist(props) {
 
     const copyId = (url) => {
         const cInput = document.createElement('input');
-        cInput.type = 'hidden';
+        cInput.setAttribute('id', 'copyLayer');
         cInput.value = url;
         document.body.appendChild(cInput);
         cInput.select();
         document.execCommand('Copy');
+
+        const thisNode = document.getElementById('copyLayer');
+        thisNode.parentNode.removeChild(thisNode);
+
         setShow(true);
         setTimeout(function () {
             setShow(false);
