@@ -62,7 +62,7 @@ export default function Marketlist(props) {
                                             src={info.logo}
                                             alt={info.name} />
                                     </div>
-                                    <div className="col-11">
+                                    <div className="col-11 EntryPointBrdr">
                                         <div className="title">{info.name}</div>
                                         <div>SP Name: {info.provider_name} </div>
                                         <div>SP Account: {info.provider_owner}</div>
