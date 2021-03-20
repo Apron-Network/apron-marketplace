@@ -5,6 +5,9 @@ import {useSubstrate} from "../../api/contracts";
 import api from "../../api";
 import Loading from "../loading/Loading";
 
+const  {mainAddress} = window;
+
+
 export default function Marketlist(props) {
     const {state, dispatch} = useSubstrate();
     const {maincontract, apiState} = state;
@@ -23,6 +26,7 @@ export default function Marketlist(props) {
             await api.main.queryServiceByUuid(maincontract,props.match.params.id).then(data => {
                 if (data) {
                     setInfo(data)
+                    console.log(data)
                 }
                 setLoading(false);
             });
@@ -48,6 +52,7 @@ export default function Marketlist(props) {
                                         <div className="title">{info.name}</div>
                                         <div>Provider: {info.provider_name} ({info.provider_owner})</div>
                                         <div>{info.desc}</div>
+                                        <div>Entry Point: {`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${info.provider_owner}`}</div>
                                     </div>
                                 </div>
                             </li>
