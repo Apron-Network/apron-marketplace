@@ -10,37 +10,37 @@ export default function Logs() {
 
     const warper = useRef();
 
-    let socket = new WebSocket(gateway_server);
 
-    socket.onopen = function (event) {
-        console.log('Websocket connect');
 
-    };
-    socket.onmessage = function (event) {
-        let obj = JSON.parse(event.data);
-        let mylist = list;
+    useEffect(()=>{
+        let socket = new WebSocket(gateway_server);
 
-        let arr = mylist.filter((item) =>item.ts === obj.ts);
-        if ( !arr || !arr.length){
-            mylist.push(obj);
-            if(mylist.length>10){
-                mylist.shift();
+        socket.onopen = function (event) {
+            console.log('Websocket connect');
+
+        };
+        socket.onmessage = function (event) {
+            let obj = JSON.parse(event.data);
+            let mylist = list;
+
+            let arr = mylist.filter((item) =>item.ts === obj.ts);
+            if ( !arr || !arr.length){
+                mylist.push(obj);
+                if(mylist.length>10){
+                    mylist.shift();
+                }
+                setList([...mylist]);
+                if(warper.current!=null){
+                    warper.current.scrollTop = warper.current.scrollHeight;
+                }
+
             }
-            setList([...mylist]);
-            if(warper.current!=null){
-                warper.current.scrollTop = warper.current.scrollHeight;
-            }
+        };
 
+        return ()=>{
+            socket.close();
         }
-    };
-
-    // useEffect(()=>{
-    //
-    //
-    //     return ()=>{
-    //         socket = null;
-    //     }
-    // },[]);
+    },[]);
     return (
         <div className="rain">
             <div className="contentbg">

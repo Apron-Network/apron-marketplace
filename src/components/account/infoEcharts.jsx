@@ -10,6 +10,7 @@ import apiInterface from "../../api";
 class InfoEcharts extends Component {
 
     initEchart(list) {
+
             var myChart = echarts.init(document.getElementById('main'));
             myChart.setOption({
                 tooltip: {
