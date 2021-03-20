@@ -72,7 +72,17 @@
     width: 100%;
   }
 }
+.copied{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1em;
+  width: 200px;
+  color: #205fee;
 
+}
 
 .list{
   height: 239px;
