@@ -4,6 +4,7 @@ import Advantage from "./advantage";
 import {useSubstrate} from "../../api/contracts";
 import api from "../../api";
 import Loading from "../loading/Loading";
+import {Alert} from "react-bootstrap";
 
 const  {mainAddress} = window;
 
@@ -14,8 +15,21 @@ export default function Marketlist(props) {
 
 
     const [loading,setLoading]= useState(false);
+    const [show,setShow]= useState(false);
 
     const [info, setInfo] = useState(null);
+
+    const copyId = (url) => {
+        const cInput = document.createElement('input');
+        cInput.value = url;
+        document.body.appendChild(cInput);
+        cInput.select();
+        document.execCommand('Copy');
+        setShow(true);
+        setTimeout(function () {
+            setShow(false);
+        },2000)
+    }
 
     useEffect( () => {
         if(maincontract == null && apiState === 'READY'){
@@ -50,9 +64,13 @@ export default function Marketlist(props) {
                                     </div>
                                     <div className="col-11">
                                         <div className="title">{info.name}</div>
-                                        <div>Provider: {info.provider_name} ({info.provider_owner})</div>
+                                        <div>SP Name: {info.provider_name} </div>
+                                        <div>SP Account: {info.provider_owner}</div>
                                         <div>{info.desc}</div>
-                                        <div>Entry Point: {`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</div>
+
+                                        <div>Your Entry Point:  <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>
+                                        <Alert show={show} variant="primary" onClose={() => setShow(false)} dismissible>copied to clipboard!
+                                        </Alert>
                                     </div>
                                 </div>
                             </li>
