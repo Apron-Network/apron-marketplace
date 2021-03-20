@@ -10,7 +10,7 @@ const  {mainAddress} = window;
 
 export default function Marketlist(props) {
     const {state, dispatch} = useSubstrate();
-    const {maincontract, apiState} = state;
+    const {maincontract, apiState,allAccounts} = state;
 
 
     const [loading,setLoading]= useState(false);
@@ -52,7 +52,7 @@ export default function Marketlist(props) {
                                         <div className="title">{info.name}</div>
                                         <div>Provider: {info.provider_name} ({info.provider_owner})</div>
                                         <div>{info.desc}</div>
-                                        <div>Entry Point: {`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${info.provider_owner}`}</div>
+                                        <div>Entry Point: {`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</div>
                                     </div>
                                 </div>
                             </li>
