@@ -1,5 +1,6 @@
 import Accounts from "./Account";
 import publicJs from "../utils/publicJs";
+import request from './request';
 
 const value = 0;
 const gasLimit = -1;
@@ -40,14 +41,10 @@ const setAddService = async (maincontract,obj,cb) => {
 
     if (maincontract === null || !maincontract || !maincontract.tx || !AccountId) return;
 
-
-
-
     const{uuid,name,description,logo,providerName,providerOwner,usage,declaimer,pricePlan,createTime}=obj;
 
     const data = await maincontract.tx.addService({value, gasLimit:-1}, uuid,name,description,logo,createTime,providerName,providerOwner,usage,pricePlan,declaimer).signAndSend(AccountId, { signer: injector.signer }, (result) => {
         if (result.status.isFinalized) {
-            console.log(result.status.isFinalized ,result.status.isInBlock );
             console.log(result)
             cb(true)
         }
@@ -56,12 +53,33 @@ const setAddService = async (maincontract,obj,cb) => {
 };
 
 
+const addService = async (obj) => {
+    const{uuid,name,description,logo,providerName,providerOwner,usage,declaimer,pricePlan,createTime,base_url,schema}=obj;
+    let paramsObj={
+        id: uuid,
+        name: name,
+        base_url,
+        schema,
+        desc: description,
+        logo: logo,
+        create_time: createTime,
+        service_provider_name: providerName,
+        service_provider_account: providerOwner,
+        service_usage: usage,
+        service_price_plan: pricePlan,
+        service_declaimer: declaimer,
+    };
+    const data = await request.post('service/',paramsObj);
+    return data;
+};
+
 
 export default {
     listServices,
     queryServiceByUuid,
     listServicesProvider,
     setAddService,
+    addService,
 
 }
 

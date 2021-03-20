@@ -74,7 +74,7 @@ export default function Headertop(props) {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item href="#/account">Purchase Record</Dropdown.Item>
-                                <Dropdown.Item href="#/myprovider">My Provider</Dropdown.Item>
+                                <Dropdown.Item href="#/myprovider">My Service</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>

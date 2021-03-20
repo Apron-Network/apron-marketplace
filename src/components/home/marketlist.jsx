@@ -17,7 +17,7 @@ export default function Marketlist(props) {
         props.history.push(`/service/${id}`)
     }
     const [show, setShow] = useState(false);
-    const [form,setForm] = useState(['','','','','']);
+    const [form,setForm] = useState(['','','','','',"httpbin/","http"]);
     const [tokenlist, settokenlist] = useState([ {
         name: '',
         description: '',
@@ -41,16 +41,25 @@ export default function Marketlist(props) {
             providerOwner:AccountId,
             usage:form[3],
             declaimer:form[4],
+            base_url:form[5],
+            schema:form[6],
             pricePlan:JSON.stringify(tokenlist),
             createTime:Date.parse(new Date())
         };
         setShow(false);
         setLoading(true);
-        await apiInterface.main.setAddService(maincontract, obj, (data) => {
+
+        // await apiInterface.main.setAddService(maincontract, obj, (data) => {
+        //     if(data){
+        //
+        //         window.location.reload();
+        //
+        //     }
+        // });
+
+        await apiInterface.main.addService(obj).then( (data) => {
             if(data){
-
                 window.location.reload();
-
             }
         });
 
@@ -103,7 +112,7 @@ export default function Marketlist(props) {
             <div className="contentbg list">
                 <div className='row titleBg'>
                     <div className="col-6"><h4>SERVICE MARKET</h4></div>
-                    <div className="col-6 rht"><span onClick={handleShow}>ADD NEW</span></div>
+                    <div className="col-6 rht addnew"><span onClick={handleShow}><i className='fa fa-plus' /> ADD NEW</span></div>
                     <Modal show={show} onHide={handleClose}
                            aria-labelledby="contained-modal-title-vcenter"
                            centered>
@@ -116,6 +125,7 @@ export default function Marketlist(props) {
                                     placeholder="name"
                                     value={form[0]}
                                     name='name'
+                                    autoComplete="off"
                                     onChange={(event) => setFormvalue(event,0)}
                                 />
                             </InputGroup>
@@ -124,15 +134,16 @@ export default function Marketlist(props) {
                                     placeholder="description"
                                     value={form[1]}
                                     name='desc'
+                                    autoComplete="off"
                                     onChange={(event) => setFormvalue(event,1)}
                                 />
-
                             </InputGroup>
                             <InputGroup className="mb-3">
                                 <FormControl
                                     placeholder="logo"
                                     value={form[2]}
                                     name='logo'
+                                    autoComplete="off"
                                     onChange={(event) => setFormvalue(event,2)}
                                 />
                             </InputGroup>
@@ -141,6 +152,7 @@ export default function Marketlist(props) {
                                     placeholder="usage"
                                     value={form[3]}
                                     name='usage'
+                                    autoComplete="off"
                                     onChange={(event) => setFormvalue(event,3)}
                                 />
                             </InputGroup>
@@ -149,7 +161,26 @@ export default function Marketlist(props) {
                                     placeholder="declaimer"
                                     value={form[4]}
                                     name='declaimer'
+                                    autoComplete="off"
                                     onChange={(event) => setFormvalue(event,4)}
+                                />
+                            </InputGroup>
+                            <InputGroup className="mb-3">
+                                <FormControl
+                                    placeholder="base_url"
+                                    value={form[5]}
+                                    name='base_url'
+                                    autoComplete="off"
+                                    onChange={(event) => setFormvalue(event,5)}
+                                />
+                            </InputGroup>
+                            <InputGroup className="mb-3">
+                                <FormControl
+                                    placeholder="schema"
+                                    value={form[6]}
+                                    name='schema'
+                                    autoComplete="off"
+                                    onChange={(event) => setFormvalue(event,6)}
                                 />
                             </InputGroup>
                             {tokenlist.map((i, index) => (
@@ -162,6 +193,7 @@ export default function Marketlist(props) {
                                                     placeholder="name"
                                                     value={i.name}
                                                     name='name'
+                                                    autoComplete="off"
                                                     onChange={(event) => setAddress(event, index)}
                                                 />
                                             </InputGroup>
@@ -172,6 +204,7 @@ export default function Marketlist(props) {
                                                     placeholder="description"
                                                     value={i.description}
                                                     name='description'
+                                                    autoComplete="off"
                                                     onChange={(event) => setAddress(event, index)}
                                                 />
                                             </InputGroup>
@@ -181,12 +214,6 @@ export default function Marketlist(props) {
                                         </div>
                                         <div className="col-6">
                                             <InputGroup className="mb-3">
-                                                {/*<FormControl*/}
-                                                {/*    placeholder="type"*/}
-                                                {/*    value={i.type}*/}
-                                                {/*    name='type'*/}
-                                                {/*    onChange={(event) => setAddress(event, index)}*/}
-                                                {/*/>*/}
 
                                                 <Form.Control as="select" onChange={(event)=>handleSelect(event,index)} value={i.type}>
                                                     <option>select option</option>
@@ -201,6 +228,7 @@ export default function Marketlist(props) {
                                                     placeholder="price"
                                                     value={i.price}
                                                     name='price'
+                                                    autoComplete="off"
                                                     onChange={(event) => setAddress(event, index)}
                                                 />
                                             </InputGroup>
@@ -216,7 +244,7 @@ export default function Marketlist(props) {
                             ))
                             }
                             <div>
-                                <Button variant="light" onClick={addtoken}><i className="fa fa-plus"/> Add PricePlan</Button>
+                                <button variant="light" onClick={addtoken} className='addnewBtn'><i className="fa fa-plus"/> Add PricePlan</button>
                             </div>
                         </Modal.Body>
                         <Modal.Footer>

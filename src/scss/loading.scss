@@ -1,13 +1,16 @@
 .loading{
   text-align: center;
   padding: 50px 0;
+
   h4{
     font-size: 24px;
-    color: #000000;
+    //color: #000000;
     margin-bottom: 10px;
     font-weight: 600;
     letter-spacing: 0.4px;
+    border-bottom: 0;
   }
+
 }
   .spinner{
     display: inline-block;
@@ -15,4 +18,43 @@
   }
 .waiting{
   display: inline-block;
+}
+.modal-content{
+  background:rgba(0,0,0,0.8);
+  color: #ffffff;
+  box-shadow: 0 0 10px #205fee;
+}
+.modal-body{
+  input{
+    background: #111;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,.3);
+    &:focus{
+      background: #333!important;
+      color: #ffffff!important;
+      border: 1px solid #205fee!important;
+    }
+  }
+
+}
+.modal-footer{
+  border-top: 1px solid rgba(255,255,255,.3);
+}
+.form-control{
+  background: #111;
+  color: #ffffff!important;
+  border: 1px solid rgba(255,255,255,.3);
+
+  &:focus{
+    background: #333!important;
+    color: #ffffff!important;
+    border: 1px solid #205fee!important;
+  }
+}
+.addnewBtn{
+  background: #222!important;
+  border: 0;
+  color:#fff;
+  padding: 10px;
+  outline: none;
 }

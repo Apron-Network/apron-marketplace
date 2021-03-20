@@ -6,7 +6,6 @@ const postUserkey = async () => {
     let obj={
         account_id:AccountId
     }
-    console.log(AccountId)
     const data = await request.post('/service/test_httpbin_service/keys/',obj);
 
     return data;
