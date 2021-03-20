@@ -11,7 +11,7 @@ export default function AccountTable(props) {
     const formatData = (val)=>{
         if(!val) return ;
       let str =  val.replace(/,/g,'');
-      return new Date(parseInt(str)).toLocaleString();
+      return new Date(parseInt(str)*1000).toLocaleString();
 
     }
     const handleToservice=(id)=>{

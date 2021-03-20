@@ -43,7 +43,7 @@ export default function Account(props) {
             // for(let item of userkey){
             //     await apiInterface.base.getList(basecontract,item).then(data => {
             const AccountId = await Accounts.accountAddress();
-            console.log()
+
                 await apiInterface.base.getList(basecontract,AccountId).then(data => {
                     if (data && data.length) {
                         data.map(i=> arr.push(i))
