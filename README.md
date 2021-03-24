@@ -1,4 +1,4 @@
-# The demo frontend for Apron Network
+# The marketplace frontend for Apron Network
 
 ## Available Scripts
 
