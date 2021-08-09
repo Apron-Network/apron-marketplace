@@ -5,6 +5,8 @@ import Accounts from "../../api/Account";
 import apiInterface from "../../api";
 import {useSubstrate} from "../../api/contracts";
 import Loading from "../loading/Loading";
+import titleFront from "../../images/Dec.svg";
+import Arrow from "../../images/Icon_Arrow_Nor.svg";
 
 export default function Marketlist(props) {
 
@@ -13,8 +15,13 @@ export default function Marketlist(props) {
 
     const [loading, setLoading] = useState(false);
 
-    const handleToservice=(id)=>{
-        props.history.push(`/service/${id}`)
+    const handleToservice=(id,type)=>{
+        if(type==="home"){
+            props.history.push(`/service/${id}`)
+        }else{
+            props.history.push(`/myservice/${id}`)
+        }
+
     }
     const [show, setShow] = useState(false);
     const [form,setForm] = useState(['','','','','',"httpbin/","http"]);
@@ -106,169 +113,198 @@ export default function Marketlist(props) {
         settokenlist([...newArray])
     }
 
-    const { list } = props;
+    const { list,type } = props;
     return(
-        <div className="rain">
+
+
+        <div>
             <Loading showLoading={loading} tips='Create new service'/>
+
             <div className="contentbg list">
-                <div className='row titleBg'>
-                    <div className="col-6"><h4>SERVICE MARKET</h4></div>
-                    <div className="col-6 rht addnew"><span onClick={handleShow}><i className='fa fa-plus' /> ADD NEW</span></div>
-                    <Modal show={show} onHide={handleClose}
-                           aria-labelledby="contained-modal-title-vcenter"
-                           centered>
-                        <Modal.Header closeButton>
-                            <Modal.Title>ADD SERVICE</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <InputGroup className="mb-3">
-                                <FormControl
-                                    placeholder="name"
-                                    value={form[0]}
-                                    name='name'
-                                    autoComplete="off"
-                                    onChange={(event) => setFormvalue(event,0)}
-                                />
-                            </InputGroup>
-                            <InputGroup className="mb-3">
-                                <FormControl
-                                    placeholder="description"
-                                    value={form[1]}
-                                    name='desc'
-                                    autoComplete="off"
-                                    onChange={(event) => setFormvalue(event,1)}
-                                />
-                            </InputGroup>
-                            <InputGroup className="mb-3">
-                                <FormControl
-                                    placeholder="logo"
-                                    value={form[2]}
-                                    name='logo'
-                                    autoComplete="off"
-                                    onChange={(event) => setFormvalue(event,2)}
-                                />
-                            </InputGroup>
-                            <InputGroup className="mb-3">
-                                <FormControl
-                                    placeholder="usage"
-                                    value={form[3]}
-                                    name='usage'
-                                    autoComplete="off"
-                                    onChange={(event) => setFormvalue(event,3)}
-                                />
-                            </InputGroup>
-                            <InputGroup className="mb-3">
-                                <FormControl
-                                    placeholder="declaimer"
-                                    value={form[4]}
-                                    name='declaimer'
-                                    autoComplete="off"
-                                    onChange={(event) => setFormvalue(event,4)}
-                                />
-                            </InputGroup>
-                            <InputGroup className="mb-3">
-                                <FormControl
-                                    placeholder="base_url"
-                                    value={form[5]}
-                                    name='base_url'
-                                    autoComplete="off"
-                                    onChange={(event) => setFormvalue(event,5)}
-                                />
-                            </InputGroup>
-                            <InputGroup className="mb-3">
-                                <FormControl
-                                    placeholder="schema"
-                                    value={form[6]}
-                                    name='schema'
-                                    autoComplete="off"
-                                    onChange={(event) => setFormvalue(event,6)}
-                                />
-                            </InputGroup>
-                            {tokenlist.map((i, index) => (
+                {/*<div className='row titleBg'>*/}
+                {/*    /!*<div className="col-6"><h4>SERVICE MARKET</h4></div>*!/*/}
+                {/*    /!*<div className="col-6 rht addnew"><span onClick={handleShow}><i className='fa fa-plus' /> ADD NEW</span></div>*!/*/}
+                {/*    <Modal show={show} onHide={handleClose}*/}
+                {/*           aria-labelledby="contained-modal-title-vcenter"*/}
+                {/*           centered>*/}
+                {/*        <Modal.Header closeButton>*/}
+                {/*            <Modal.Title>ADD SERVICE</Modal.Title>*/}
+                {/*        </Modal.Header>*/}
+                {/*        <Modal.Body>*/}
+                {/*            <InputGroup className="mb-3">*/}
+                {/*                <FormControl*/}
+                {/*                    placeholder="name"*/}
+                {/*                    value={form[0]}*/}
+                {/*                    name='name'*/}
+                {/*                    autoComplete="off"*/}
+                {/*                    onChange={(event) => setFormvalue(event,0)}*/}
+                {/*                />*/}
+                {/*            </InputGroup>*/}
+                {/*            <InputGroup className="mb-3">*/}
+                {/*                <FormControl*/}
+                {/*                    placeholder="description"*/}
+                {/*                    value={form[1]}*/}
+                {/*                    name='desc'*/}
+                {/*                    autoComplete="off"*/}
+                {/*                    onChange={(event) => setFormvalue(event,1)}*/}
+                {/*                />*/}
+                {/*            </InputGroup>*/}
+                {/*            <InputGroup className="mb-3">*/}
+                {/*                <FormControl*/}
+                {/*                    placeholder="logo"*/}
+                {/*                    value={form[2]}*/}
+                {/*                    name='logo'*/}
+                {/*                    autoComplete="off"*/}
+                {/*                    onChange={(event) => setFormvalue(event,2)}*/}
+                {/*                />*/}
+                {/*            </InputGroup>*/}
+                {/*            <InputGroup className="mb-3">*/}
+                {/*                <FormControl*/}
+                {/*                    placeholder="usage"*/}
+                {/*                    value={form[3]}*/}
+                {/*                    name='usage'*/}
+                {/*                    autoComplete="off"*/}
+                {/*                    onChange={(event) => setFormvalue(event,3)}*/}
+                {/*                />*/}
+                {/*            </InputGroup>*/}
+                {/*            <InputGroup className="mb-3">*/}
+                {/*                <FormControl*/}
+                {/*                    placeholder="declaimer"*/}
+                {/*                    value={form[4]}*/}
+                {/*                    name='declaimer'*/}
+                {/*                    autoComplete="off"*/}
+                {/*                    onChange={(event) => setFormvalue(event,4)}*/}
+                {/*                />*/}
+                {/*            </InputGroup>*/}
+                {/*            <InputGroup className="mb-3">*/}
+                {/*                <FormControl*/}
+                {/*                    placeholder="base_url"*/}
+                {/*                    value={form[5]}*/}
+                {/*                    name='base_url'*/}
+                {/*                    autoComplete="off"*/}
+                {/*                    onChange={(event) => setFormvalue(event,5)}*/}
+                {/*                />*/}
+                {/*            </InputGroup>*/}
+                {/*            <InputGroup className="mb-3">*/}
+                {/*                <FormControl*/}
+                {/*                    placeholder="schema"*/}
+                {/*                    value={form[6]}*/}
+                {/*                    name='schema'*/}
+                {/*                    autoComplete="off"*/}
+                {/*                    onChange={(event) => setFormvalue(event,6)}*/}
+                {/*                />*/}
+                {/*            </InputGroup>*/}
+                {/*            {tokenlist.map((i, index) => (*/}
 
-                                <div key={`tokenlist_${index}`} className="pricePlan">
-                                    <div className="row">
-                                        <div className="col-6">
-                                            <InputGroup className="mb-3">
-                                                <FormControl
-                                                    placeholder="name"
-                                                    value={i.name}
-                                                    name='name'
-                                                    autoComplete="off"
-                                                    onChange={(event) => setAddress(event, index)}
-                                                />
-                                            </InputGroup>
-                                        </div>
-                                        <div className="col-6">
-                                            <InputGroup className="mb-3">
-                                                <FormControl
-                                                    placeholder="description"
-                                                    value={i.description}
-                                                    name='description'
-                                                    autoComplete="off"
-                                                    onChange={(event) => setAddress(event, index)}
-                                                />
-                                            </InputGroup>
-
-
-
-                                        </div>
-                                        <div className="col-6">
-                                            <InputGroup className="mb-3">
-
-                                                <Form.Control as="select" onChange={(event)=>handleSelect(event,index)} value={i.type}>
-                                                    <option>select option</option>
-                                                    <option  value='post-paid'>post-paid</option>
-                                                    <option  value='prepay'>prepay</option>
-                                                </Form.Control>
-                                            </InputGroup>
-                                        </div>
-                                        <div className="col-6">
-                                            <InputGroup className="mb-3">
-                                                <FormControl
-                                                    placeholder="price"
-                                                    value={i.price}
-                                                    name='price'
-                                                    autoComplete="off"
-                                                    onChange={(event) => setAddress(event, index)}
-                                                />
-                                            </InputGroup>
-                                        </div>
-                                            {
-                                                !!index &&
-                                                <i className="fa fa-close remove" onClick={()=> removeToken( i, index)} />
-                                            }
+                {/*                <div key={`tokenlist_${index}`} className="pricePlan">*/}
+                {/*                    <div className="row">*/}
+                {/*                        <div className="col-6">*/}
+                {/*                            <InputGroup className="mb-3">*/}
+                {/*                                <FormControl*/}
+                {/*                                    placeholder="name"*/}
+                {/*                                    value={i.name}*/}
+                {/*                                    name='name'*/}
+                {/*                                    autoComplete="off"*/}
+                {/*                                    onChange={(event) => setAddress(event, index)}*/}
+                {/*                                />*/}
+                {/*                            </InputGroup>*/}
+                {/*                        </div>*/}
+                {/*                        <div className="col-6">*/}
+                {/*                            <InputGroup className="mb-3">*/}
+                {/*                                <FormControl*/}
+                {/*                                    placeholder="description"*/}
+                {/*                                    value={i.description}*/}
+                {/*                                    name='description'*/}
+                {/*                                    autoComplete="off"*/}
+                {/*                                    onChange={(event) => setAddress(event, index)}*/}
+                {/*                                />*/}
+                {/*                            </InputGroup>*/}
 
 
-                                    </div>
-                                </div>
-                            ))
-                            }
-                            <div>
-                                <button variant="light" onClick={addtoken} className='addnewBtn'><i className="fa fa-plus"/> Add PricePlan</button>
-                            </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" onClick={handleSave}>
-                                Save
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
-                </div>
+
+                {/*                        </div>*/}
+                {/*                        <div className="col-6">*/}
+                {/*                            <InputGroup className="mb-3">*/}
+
+                {/*                                <Form.Control as="select" onChange={(event)=>handleSelect(event,index)} value={i.type}>*/}
+                {/*                                    <option>select option</option>*/}
+                {/*                                    <option  value='post-paid'>post-paid</option>*/}
+                {/*                                    <option  value='prepay'>prepay</option>*/}
+                {/*                                </Form.Control>*/}
+                {/*                            </InputGroup>*/}
+                {/*                        </div>*/}
+                {/*                        <div className="col-6">*/}
+                {/*                            <InputGroup className="mb-3">*/}
+                {/*                                <FormControl*/}
+                {/*                                    placeholder="price"*/}
+                {/*                                    value={i.price}*/}
+                {/*                                    name='price'*/}
+                {/*                                    autoComplete="off"*/}
+                {/*                                    onChange={(event) => setAddress(event, index)}*/}
+                {/*                                />*/}
+                {/*                            </InputGroup>*/}
+                {/*                        </div>*/}
+                {/*                            {*/}
+                {/*                                !!index &&*/}
+                {/*                                <i className="fa fa-close remove" onClick={()=> removeToken( i, index)} />*/}
+                {/*                            }*/}
+
+
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            ))*/}
+                {/*            }*/}
+                {/*            <div>*/}
+                {/*                <button variant="light" onClick={addtoken} className='addnewBtn'><i className="fa fa-plus"/> Add PricePlan</button>*/}
+                {/*            </div>*/}
+                {/*        </Modal.Body>*/}
+                {/*        <Modal.Footer>*/}
+                {/*            <Button variant="secondary" onClick={handleClose}>*/}
+                {/*                Close*/}
+                {/*            </Button>*/}
+                {/*            <Button variant="primary" onClick={handleSave}>*/}
+                {/*                Save*/}
+                {/*            </Button>*/}
+                {/*        </Modal.Footer>*/}
+                {/*    </Modal>*/}
+                {/*</div>*/}
+
+
 
                 <ul>
+                    <li className="listli1Brdr">
+                        <div className="firstRow">
+                            <div className="title">INFRASTRUCTURE SERVICE NETWORK</div>
+                            <div className="details"  onClick={()=>handleToservice(423,type)}><span>View Details</span><img src={Arrow} alt=""/></div>
+                        </div>
+                        <div className="listli1">
+                            <div className="listLft">
+                                <img
+                                    src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3155998395,3600507640&fm=26&gp=0.jpg"
+                                    alt="" />
+                            </div>
+                            <div className="listRht">
+                                <div className="rhtcontent">A decentralized platform that provides infrastructure
+                                    services for DApp developers,DApp users,and operators.A decentralized platform that
+                                    provides infrastructure services for DApp developers,DApp users,and operators.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+
                     {
-                        list && list.map((item,index)=>(<li onClick={()=>handleToservice(item.uuid)} key={`item_${index}`}>
-                            <div className="row">
-                                <div className="col-1">
+                        list && list.map((item,index)=>(<li key={`item_${index}`} className="listli1Brdr">
+                            <div className="firstRow">
+                                <div className="details"  onClick={()=>handleToservice(item.uuid,type)}><span>View Details</span><img src={Arrow} alt=""/></div>
+                            </div>
+                            <div className="listli1">
+                                <div className="listLft">
                                     <img
                                         src={item.logo}
                                         alt={item.name} />
                                 </div>
-                                <div className="col-11">
+                                <div className="listRht">
                                     <div className="title">{item.name}</div>
                                     <div className="rhtcontent">{item.desc}</div>
                                 </div>
@@ -276,7 +312,12 @@ export default function Marketlist(props) {
                         </li>))
                     }
                 </ul>
+
+
             </div>
+
         </div>
+
+
     )
 }

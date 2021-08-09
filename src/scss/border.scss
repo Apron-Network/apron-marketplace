@@ -2,35 +2,22 @@
   width: 100%;
   box-sizing: border-box;
 }
-/* Layout with mask */
 .borderBR,.rain{
   border-radius: 5px;
-  /*-webkit-animation-name: shineBlue;*/
-  /*-webkit-animation-duration: 20s;*/
-  /*-webkit-animation-iteration-count: infinite;*/
-  background:rgba(0,0,0,0.4);
-  box-shadow: 0 0 5px #205fee;
+  background: #fff;
+  color: #525366;
 }
 .rain{
-  margin: 30px auto;
+  margin: 10px auto;
   padding: 10px 12px 12px 10px;
-}
-@-webkit-keyframes shineBlue {
-
-  from { box-shadow: 0 0 5px #39f; }
-  15% { box-shadow: 0 0 5px #F246C9; }
-  30% { box-shadow: 0 0 5px #4453F2; }
-  45% { box-shadow: 0 0 5px #44F262; }
-  60% { box-shadow: 0 0 5px #F257D4; }
-  75% { box-shadow: 0 0 5px #EDF255; }
-  90% { box-shadow: 0 0 5px #F20006; }
-  to { box-shadow: 0 0 5px #39f; }
 }
 .contenttable,.contentbg{
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  padding: 28px;
+  font-size: 16px;
 }
-.contentbg{
-  padding: 20px;
+.contenttable{
+  margin-bottom: 100px;
 }

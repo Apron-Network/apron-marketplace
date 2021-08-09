@@ -3,8 +3,6 @@ import FootBtm from "./components/footBtm";
 import React from "react";
 import Header from "./components/header";
 import { SubstrateContextProvider} from './api/contracts';
-import Bg from "./components/bg";
-
 
 function App(props) {
     return (
@@ -20,7 +18,6 @@ function App(props) {
                     </div>
                 </div>
             </SubstrateContextProvider>
-            <Bg />
         </div>
 
     );

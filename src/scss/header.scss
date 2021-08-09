@@ -1,17 +1,70 @@
+.header{
+  background: #000433;
+  width: 100%;
+  box-sizing: border-box;
+  padding:  12px 9.5vw 0;
+  font-family: SF-Pro-Display;
+
+  .logo .active{
+    padding:12px;
+    display: inline-block;
+    border-radius: 12px 12px 0 0;
+    background: #F5F5FA;
+    color: #000!important;
+    font-weight: bold;
+    white-space: nowrap;
+    height: 100%;
+    text-transform: uppercase;
+  }
+  .noActive{
+    padding:12px 12px 12px 0;
+    display: inline-block;
+  }
+}
+.navBar{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding:12px;
+    height: 100%;
+    text-transform: uppercase;
+    margin-left: 20px;
+    div{
+      width: 100%;
+      text-align: center;
+    }
+    i{
+      font-size: 26px;
+    }
+  }
+  .active{
+
+    border-radius: 12px 12px 0 0;
+    background: #F5F5FA;
+    color: #3241f4!important;
+    font-weight: bold;
+  }
+}
 .button1 {
-  width: 200px;
+  //width: 200px;
 display: inline-block;
-  border-radius:5px;
-  padding: 1em 2em;
-  background: none;
-  color: inherit;
+  border-radius:2px;
+  //padding: 1em 2em;
+  //background: none;
+  //color: inherit;
   vertical-align: middle;
   position: relative;
   z-index: 1;
-  -webkit-backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  border:0;
-  box-shadow: 0 0 5px #39f;
+  padding: 4px 22px;
+
+  background: #fff!important;
+  color: #3241f4;
+
 }
 .button1:focus {
   outline: none;
@@ -60,7 +113,7 @@ display: inline-block;
 
 .header-button{
   select{
-    width: 50%;
+    width: 100%;
     text-align: right;
     display: inline-block;
   }
@@ -68,10 +121,10 @@ display: inline-block;
     font-size: 16px;
     span{
       color: #fff;
-      text-transform : uppercase;
+      //text-transform : uppercase;
       font-weight: bold;
       cursor: pointer;
-      text-decoration: underline;
+      //text-decoration: underline;
     }
   }
 }

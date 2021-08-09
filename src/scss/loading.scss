@@ -20,18 +20,18 @@
   display: inline-block;
 }
 .modal-content{
-  background:rgba(0,0,0,0.8);
-  color: #ffffff;
-  box-shadow: 0 0 10px #205fee;
+  color:#000;
+  background: #ffffff;
+  //box-shadow: 0 0 10px #205fee;
 }
 .modal-body{
   input{
-    background: #111;
-    color: #ffffff;
+    background: #ffffff;
+    color: #000;
     border: 1px solid rgba(255,255,255,.3);
     &:focus{
-      background: #333!important;
-      color: #ffffff!important;
+      background: #fff!important;
+      color: #000!important;
       border: 1px solid #205fee!important;
     }
   }

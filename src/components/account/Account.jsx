@@ -7,6 +7,10 @@ import {useSubstrate} from "../../api/contracts";
 
 import Loading from "../loading/Loading";
 import Accounts from "../../api/Account";
+import Marketlist from "../home/marketlist";
+import titleFront from "../../images/Dec.svg";
+
+import projectsimg from "../../images/Icon_Porject.svg"
 
 
 export default function Account(props) {
@@ -43,7 +47,6 @@ export default function Account(props) {
             // for(let item of userkey){
             //     await apiInterface.base.getList(basecontract,item).then(data => {
             const AccountId = await Accounts.accountAddress();
-
                 await apiInterface.base.getList(basecontract,AccountId).then(data => {
                     if (data && data.length) {
                         data.map(i=> arr.push(i))
@@ -76,7 +79,7 @@ export default function Account(props) {
 
 
             setlist(myobj);
-
+                console.log(list)
         };
         queryList();
 
@@ -91,21 +94,40 @@ export default function Account(props) {
 
     return(
         <div>
-            <Loading showLoading={loading} tips='Initialize account page'/>
+            {/*<Loading showLoading={loading} tips='Initialize account page'/>*/}
             <div className="row">
-                <div className="col-4">
-                    <Info />
-                </div>
-                <div className="col-8">
-                    {
-                        !!list.length &&<InfoEcharts optionlist={list} maincontract={maincontract}/>
-                    }
+                {/*<div className="col-2">*/}
+                {/*    <Info />*/}
+                {/*</div>*/}
+
+                {/*<div className="col-12">*/}
+                {/*    {*/}
+                {/*        !!list.length &&<InfoEcharts optionlist={list} maincontract={maincontract}/>*/}
+                {/*    }*/}
+
+                {/*</div>*/}
+            </div>
+
+
+            <div className="row home">
+                <div className="col-12">
+                    <div  className="middle15">
+                        <div className="topic"><img src={titleFront} alt="" />MY SERVICES</div>
+                        <div className="rain">
+                            {/*<div className="firstCreate">*/}
+                            {/*    <span><img src={projectsimg} alt=""/>*/}
+                            {/*        2 Services(s)</span>*/}
+                            {/*    /!*<button className="createNew">create new service</button>*!/*/}
+                            {/*</div>*/}
+                            <Marketlist list={list} type="my"  history={props.history}/>
+                        </div>
+                    </div>
 
                 </div>
             </div>
-            {
-                !!list.length &&<AccountTable list={list} history={props.history}/>
-            }
+            {/*{*/}
+            {/*    !!list.length &&<AccountTable list={list} history={props.history}/>*/}
+            {/*}*/}
 
         </div>
     )

@@ -7,10 +7,10 @@ table{
 }
 td,th{
   padding: 20px;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(0,0,0,0.2);
 }
 th{
-  background:rgba(255,255,255,0.2);
+  background:rgba(0,0,0,0.05);
   white-space:nowrap;
 }
 
@@ -18,15 +18,21 @@ th{
   padding: 20px;
   margin-bottom: 30px;
 }
-.brdr dl:first-child{
-  margin-bottom: 40px;
-}
+//.brdr dl:first-child{
+//  margin-bottom: 40px;
+//}
 .brdr dt{
-  color: #ffffff;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+  color: #000;
+  //padding-bottom: 10px;
+  //border-bottom: 1px solid rgba(0,0,255,0.3);
   margin-bottom: 10px;
 }
 .brdr dd{
   line-height: 1.5em;
+}
+.mb30{
+  margin-bottom: 30px;
+}
+.nobtm li{
+  margin: 0;
 }

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import Tablelist from "./tablelist";
-import Advantage from "./advantage";
+// import Tablelist from "./tablelist";
+// import Advantage from "./advantage";
 import {useSubstrate} from "../../api/contracts";
 import api from "../../api";
 import Loading from "../loading/Loading";
-import {Alert} from "react-bootstrap";
+import {Alert,Tab,Tabs} from "react-bootstrap";
 import titleFront from "../../images/Dec.svg";
 
 const  {mainAddress} = window;
@@ -88,55 +88,82 @@ export default function Marketlist(props) {
                     </ul>
                 </div>
             </div>
+            <Tabs defaultActiveKey="Desc" id="uncontrolled-tab-example" className="tabstyle">
+                <Tab eventKey="Desc" title="Desc">
+                    <div className="borderBR">
+                        <div className="contenttable">
+                            <table cellPadding="0" cellSpacing="0">
+                                <thead>
+                                <tr>
+                                    <th>TIER</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>TYPE</th>
+                                    <th>PRICE</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr >
+                                    <td>SERVICE DELAIMER</td>
+                                    <td>free</td>
+                                    <td>post-paid</td>
+                                    <td>0</td>
+                                </tr><tr >
+                                    <td>SERVICE DELAIMER</td>
+                                    <td>free</td>
+                                    <td>post-paid</td>
+                                    <td>0</td>
+                                </tr><tr >
+                                    <td>SERVICE DELAIMER</td>
+                                    <td>free</td>
+                                    <td>post-paid</td>
+                                    <td>0</td>
+                                </tr><tr >
+                                    <td>SERVICE DELAIMER</td>
+                                    <td>free</td>
+                                    <td>post-paid</td>
+                                    <td>0</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </Tab>
+                <Tab eventKey="Revenue" title="Revenue">
+                    <div className="borderBR">
+                        <div className="contenttable">
+                            <table cellPadding="0" cellSpacing="0">
+                                <thead>
+                                <tr>
+                                    <th>NAME</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>TYPE</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr >
+                                    <td>SERVICE DELAIMER</td>
+                                    <td>free</td>
+                                    <td>0</td>
+                                </tr><tr >
+                                    <td>SERVICE DELAIMER</td>
+                                    <td>free</td>
+                                    <td>0</td>
+                                </tr><tr >
+                                    <td>SERVICE DELAIMER</td>
+                                    <td>free</td>
+                                    <td>0</td>
+                                </tr><tr >
+                                    <td>SERVICE DELAIMER</td>
+                                    <td>free</td>
+                                    <td>0</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </Tab>
+            </Tabs>
 
-            <div className="borderBR brdr mb30">
-                <div className="contentbg">
-                    <dl>
-                        <dt className="titleName">SERVICE USAGE</dt>
-                        <dd>A decentralized platform that provides infrastructure
-                            services for DApp developers,DApp users,and operators.A decentralized platform that
-                            provides infrastructure services for DApp developers,DApp users,and operators.</dd>
-                    </dl>
-                </div>
-
-            </div>
-            <div className="borderBR">
-                <div className="contenttable">
-                    <table cellPadding="0" cellSpacing="0">
-                        <thead>
-                        <tr>
-                            <th>TIER</th>
-                            <th>DESCRIPTION</th>
-                            <th>TYPE</th>
-                            <th>PRICE</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <td>SERVICE DELAIMER</td>
-                                <td>free</td>
-                                <td>post-paid</td>
-                                <td>0</td>
-                            </tr><tr >
-                                <td>SERVICE DELAIMER</td>
-                                <td>free</td>
-                                <td>post-paid</td>
-                                <td>0</td>
-                            </tr><tr >
-                                <td>SERVICE DELAIMER</td>
-                                <td>free</td>
-                                <td>post-paid</td>
-                                <td>0</td>
-                            </tr><tr >
-                                <td>SERVICE DELAIMER</td>
-                                <td>free</td>
-                                <td>post-paid</td>
-                                <td>0</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
             {
                 info !=null &&   <div className="rain">
@@ -165,12 +192,12 @@ export default function Marketlist(props) {
                     </div>
                 </div>
             }
-            {
-                info !=null && <Advantage info={info}/>
-            }
-            {
-                info !=null && <Tablelist info={info} />
-            }
+            {/*{*/}
+            {/*    info !=null && <Advantage info={info}/>*/}
+            {/*}*/}
+            {/*{*/}
+            {/*    info !=null && <Tablelist info={info} />*/}
+            {/*}*/}
 
         </div>
 

@@ -5,6 +5,7 @@ import Marketlist from "./components/home/marketlist";
 import {useSubstrate} from "./api/contracts";
 import apiInterface from "./api";
 import Loading from "./components/loading/Loading";
+import titleFront from "./images/Dec.svg";
 
 export default function Home(props) {
     const {state,dispatch} = useSubstrate();
@@ -40,13 +41,16 @@ export default function Home(props) {
 
     return (<div>
         <Loading showLoading={loading} tips='Initialize home page'/>
-            <div className="row">
-                <div className="col-4">
-                    <Blocks/>
-                    <Logs />
-                </div>
-                <div className="col-8">
-                    <Marketlist list={list}  history={props.history}/>
+            <div className="row home">
+                <div className="col-12">
+                    <div  className="middle15">
+                        <div className="topic"><img src={titleFront} alt="" />SERVICES</div>
+                        <div className="rain">
+                            <Marketlist list={list} type="home" history={props.history}/>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>);
