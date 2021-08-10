@@ -92,6 +92,9 @@ export default function Marketlist(props) {
                 <Tab eventKey="Desc" title="Desc">
                     <div className="borderBR">
                         <div className="contenttable">
+                            <div className="desc">A decentralized platform that provides infrastructure
+                                services for DApp developers,DApp users,and operators.A decentralized platform that
+                                provides infrastructure services for DApp developers,DApp users,and operators.</div>
                             <table cellPadding="0" cellSpacing="0">
                                 <thead>
                                 <tr>
@@ -131,11 +134,14 @@ export default function Marketlist(props) {
                 <Tab eventKey="Revenue" title="Revenue">
                     <div className="borderBR">
                         <div className="contenttable">
+                            <div className="desc">A decentralized platform that provides infrastructure
+                                services for DApp developers,DApp users,and operators.A decentralized platform that
+                                provides infrastructure services for DApp developers,DApp users,and operators.</div>
                             <table cellPadding="0" cellSpacing="0">
                                 <thead>
                                 <tr>
                                     <th>NAME</th>
-                                    <th>DESCRIPTION</th>
+                                    <th>CALLS</th>
                                     <th>TYPE</th>
                                 </tr>
                                 </thead>
@@ -165,33 +171,33 @@ export default function Marketlist(props) {
             </Tabs>
 
 
-            {
-                info !=null &&   <div className="rain">
-                    <div className="contentbg list">
-                        <ul>
-                            <li>
-                                <div className="listlidetail">
-                                    <div className="listLft">
-                                        <img
-                                            src={info.logo}
-                                            alt={info.name} />
-                                    </div>
-                                    <div className="listRht EntryPointBrdr">
-                                        <div className="title">{info.name}</div>
-                                        <div>SP Name: {info.provider_name} </div>
-                                        <div>SP Account: {info.provider_owner}</div>
-                                        <div>{info.desc}</div>
+            {/*{*/}
+            {/*    info !=null &&   <div className="rain">*/}
+            {/*        <div className="contentbg list">*/}
+            {/*            <ul>*/}
+            {/*                <li>*/}
+            {/*                    <div className="listlidetail">*/}
+            {/*                        <div className="listLft">*/}
+            {/*                            <img*/}
+            {/*                                src={info.logo}*/}
+            {/*                                alt={info.name} />*/}
+            {/*                        </div>*/}
+            {/*                        <div className="listRht EntryPointBrdr">*/}
+            {/*                            <div className="title">{info.name}</div>*/}
+            {/*                            <div>SP Name: {info.provider_name} </div>*/}
+            {/*                            <div>SP Account: {info.provider_owner}</div>*/}
+            {/*                            <div>{info.desc}</div>*/}
 
-                                        <div>Your Entry Point: <span className='copied' title={`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>
-                                        <Alert show={show} variant="primary" onClose={() => setShow(false)} dismissible>copied to clipboard!
-                                        </Alert>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            }
+            {/*                            <div>Your Entry Point: <span className='copied' title={`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>*/}
+            {/*                            <Alert show={show} variant="primary" onClose={() => setShow(false)} dismissible>copied to clipboard!*/}
+            {/*                            </Alert>*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                </li>*/}
+            {/*            </ul>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*}*/}
             {/*{*/}
             {/*    info !=null && <Advantage info={info}/>*/}
             {/*}*/}

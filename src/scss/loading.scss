@@ -41,14 +41,15 @@
   border-top: 1px solid rgba(255,255,255,.3);
 }
 .form-control{
-  background: #111;
-  color: #ffffff!important;
-  border: 1px solid rgba(255,255,255,.3);
+  background: #fff;
+  color: #000!important;
+  border: 1px solid #E6E6EB;
 
   &:focus{
-    background: #333!important;
-    color: #ffffff!important;
-    border: 1px solid #205fee!important;
+    outline: none;
+    //background: #333!important;
+    //color: #ffffff!important;
+    //border: 1px solid #205fee!important;
   }
 }
 .addnewBtn{

@@ -5,6 +5,7 @@ import {useSubstrate} from "../../api/contracts";
 import api from "../../api";
 
 import Loading from "../loading/Loading";
+import StartEndTime from "./startEndTime";
 import titleFront from "../../images/Dec.svg";
 import Arrow from "../../images/Icon_Arrow_Nor.svg";
 import ArrowAct from "../../images/Icon_Arrow_Sel.svg";
@@ -60,6 +61,10 @@ export default function Home(props) {
                     <div className="topic"><img src={titleFront} alt="" />DETAILS</div>
                     <div className="rain">
                         <div className="contentbg">
+                            <div>
+                                <StartEndTime />
+                            </div>
+                            <div className="totalcost">Total Cost <span>10,123 APN</span></div>
                             <table cellPadding="0" cellSpacing="0">
                                 <thead>
                                 <tr>

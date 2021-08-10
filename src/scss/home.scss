@@ -267,3 +267,34 @@ footer{
    }
  }
 }
+.desc{
+  padding: 28px 0 40px;
+}
+.flextime{
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  &>div{
+    margin:0 20px;
+    position: relative;
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+  img{
+   position: absolute;
+    z-index: 999;
+    right: 10px;
+    top: 10px;
+  }
+}
+.totalcost{
+  padding-bottom: 20px;
+  span{
+    font-family: SF-Pro-Display-Bold;
+    padding-left: 10px;
+  }
+}

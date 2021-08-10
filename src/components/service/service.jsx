@@ -44,9 +44,9 @@ export default function Marketlist(props) {
         const queryList = async () => {
             setLoading(true);
             await api.main.queryServiceByUuid(maincontract,props.match.params.id).then(data => {
+                console.log("===",data)
                 if (data) {
                     setInfo(data)
-                    console.log(data)
                 }
                 setLoading(false);
             });
@@ -138,39 +138,39 @@ export default function Marketlist(props) {
                 </div>
             </div>
 
-            {
-                info !=null &&   <div className="rain">
-                    <div className="contentbg list">
-                        <ul>
-                            <li>
-                                <div className="listlidetail">
-                                    <div className="listLft">
-                                        <img
-                                            src={info.logo}
-                                            alt={info.name} />
-                                    </div>
-                                    <div className="listRht EntryPointBrdr">
-                                        <div className="title">{info.name}</div>
-                                        <div>SP Name: {info.provider_name} </div>
-                                        <div>SP Account: {info.provider_owner}</div>
-                                        <div>{info.desc}</div>
+            {/*{*/}
+            {/*    info !=null &&   <div className="rain">*/}
+            {/*        <div className="contentbg list">*/}
+            {/*            <ul>*/}
+            {/*                <li>*/}
+            {/*                    <div className="listlidetail">*/}
+            {/*                        <div className="listLft">*/}
+            {/*                            <img*/}
+            {/*                                src={info.logo}*/}
+            {/*                                alt={info.name} />*/}
+            {/*                        </div>*/}
+            {/*                        <div className="listRht EntryPointBrdr">*/}
+            {/*                            <div className="title">{info.name}</div>*/}
+            {/*                            <div>SP Name: {info.provider_name} </div>*/}
+            {/*                            <div>SP Account: {info.provider_owner}</div>*/}
+            {/*                            <div>{info.desc}</div>*/}
 
-                                        <div>Your Entry Point: <span className='copied' title={`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>
-                                        <Alert show={show} variant="primary" onClose={() => setShow(false)} dismissible>copied to clipboard!
-                                        </Alert>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            }
-            {
-                info !=null && <Advantage info={info}/>
-            }
-            {
-                info !=null && <Tablelist info={info} />
-            }
+            {/*                            <div>Your Entry Point: <span className='copied' title={`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>*/}
+            {/*                            <Alert show={show} variant="primary" onClose={() => setShow(false)} dismissible>copied to clipboard!*/}
+            {/*                            </Alert>*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                </li>*/}
+            {/*            </ul>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*}*/}
+            {/*{*/}
+            {/*    info !=null && <Advantage info={info}/>*/}
+            {/*}*/}
+            {/*{*/}
+            {/*    info !=null && <Tablelist info={info} />*/}
+            {/*}*/}
 
         </div>
 

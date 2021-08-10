@@ -25,6 +25,7 @@ export default function Home(props) {
     }, []);
 
      useEffect(() => {
+
          if (maincontract == null ) return;
          const queryList = async () => {
              setLoading(true);
