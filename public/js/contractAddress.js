@@ -1,7 +1,7 @@
 const mainAddress = {
-    market: "5GtMaYJc7kx9NYpUpzibiCLz5NzEyZCPvBXGMveh4jZFEJkh",
-    statistics:'5EMwZbKpLL17t1K6ijtcQXwtLPoJ1gT8o8QhJq9umebeZ3wM',
+    market: "5CTBtLMvYacY29uPvNypRqL96uMAAifnrGysSDsLGThgcCa2",
+    statistics:'5DwcMq4S9MB64NBUKFmCKH4Py1dyQ3ftoHjxGPr8oH7WAMUr',
     basepath:'47.242.250.114',
-    name:'Apron'
+    name:'Apron Market'
 };
 window.mainAddress = mainAddress;
