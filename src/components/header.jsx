@@ -15,7 +15,7 @@ export default function Headertop(props) {
 
     const [walletTips, setWalletTips] = useState(false);
     const [tips, setTips] = useState('');
-    const [showHeader, setshowHeader] = useState(false);
+
     const [allList, setallList] = useState([]);
     const [selected, setselected] = useState([]);
     const [type, settype] = useState(0);
@@ -24,16 +24,15 @@ export default function Headertop(props) {
     useEffect(() => {
 
         createHashHistory.listen((obj) => {
-           console.log("====obj====createHashHistory===",obj.pathname)
             if(obj.pathname.indexOf('myservice')>-1){
                 settype(1);
-                sessionStorage.setItem('type',type);
+                sessionStorage.setItem('type',1);
             }else if(obj.pathname.indexOf('usage')>-1){
                 settype(2);
-                sessionStorage.setItem('type',type);
+                sessionStorage.setItem('type',2);
             }else{
                 settype(0);
-                sessionStorage.setItem('type',type);
+                sessionStorage.setItem('type',0);
             }
         });
     }, []);
@@ -49,11 +48,9 @@ export default function Headertop(props) {
             setselected(selectedStorage)
         }
         let typeInit = sessionStorage.getItem('type');
-        console.error("===sessionStorage.getItem('type')", JSON.parse(sessionStorage.getItem('type')))
-        // if(typeInit!=null){
-        //     settype(parseInt(typeInit))
-        // }
-
+        if(typeInit!=null){
+            settype(parseInt(typeInit))
+        }
         dispatch({type: 'LOAD_MAINCONTRACT'});
 
         if(!allAccounts && selectedStorage){
@@ -100,7 +97,7 @@ export default function Headertop(props) {
             createHashHistory.push(`/${type}`)
         }
         settype(index);
-        sessionStorage.setItem('type',type);
+        sessionStorage.setItem('type',index);
     }
     const AddresstoShow = (address)=> {
 
@@ -117,7 +114,6 @@ export default function Headertop(props) {
             setbalanceOf(balance.toHuman().free)
         });
     }
-
 
     return (<div className='header'>
         <div className="row">

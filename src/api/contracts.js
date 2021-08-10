@@ -2,6 +2,7 @@ import React, {useReducer, useContext} from 'react';
 import reducer from './reducer';
 import INIT_STATE from './initState';
 import mainConnect from './mainContract'
+import InitBase from './base'
 
 import {ApiPromise, WsProvider} from '@polkadot/api';
 
@@ -22,9 +23,9 @@ const connect = async (state, dispatch) => {
 
     const wsProvider = new WsProvider(ws_server);
     const api = await ApiPromise.create({
-        provider: wsProvider, types: {
-            Address: 'AccountId',
-            LookupSource: 'AccountId'
+        provider: wsProvider,  types: {
+            Address: "MultiAddress",
+            LookupSource: "MultiAddress"
         }
     });
 
@@ -40,9 +41,17 @@ const initState = {...INIT_STATE};
 const SubstrateContextProvider = (props) => {
     const [state, dispatch] = useReducer(reducer, initState);
     console.log("=====state=====",state);
+    const {api,maincontract,basecontract} = state;
 
-    connect(state, dispatch);
-    mainConnect(state, dispatch);
+    if(api == null ) {
+        connect(state, dispatch);
+    }
+    if(maincontract == null) {
+        mainConnect(state, dispatch)
+    }
+    if(basecontract == null) {
+        InitBase.InitBase(state, dispatch)
+    }
 
 
     return <SubstrateContext.Provider value={{state,dispatch}}>

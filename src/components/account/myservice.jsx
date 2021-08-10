@@ -43,11 +43,13 @@ export default function Marketlist(props) {
         if(maincontract == null && apiState === 'READY'){
             dispatch({type: 'LOAD_MAINCONTRACT'});
         }
+        if(basecontract==null){
+            dispatch({type: 'LOAD_BASE'});
+        }
         const queryList = async () => {
             setLoading(true);
 
             let list = JSON.parse(sessionStorage.getItem("myserviceList"));
-
             setLoading(false);
             if(list){
                 let data = list.filter(item => item.uuid === props.match.params.id);

@@ -7,28 +7,28 @@ import titleFront from "../../images/Dec.svg";
 
 export default function MyServiceList(props) {
     const {state,dispatch} = useSubstrate();
-    const {maincontract,allAccounts,api} = state;
+    const {maincontract,allAccounts,api,basecontract} = state;
     const [list, setlist] = useState([]);
-
     const [loading, setLoading] = useState(false);
-
-    const account = JSON.parse(sessionStorage.getItem('account'));
-
     useEffect(() => {
         if(maincontract==null){
             dispatch({type: 'LOAD_MAINCONTRACT'});
         }
-        if(!allAccounts && account){
-            dispatch({type: 'SET_ALLACCOUNTS',payload:account});
+        if(basecontract==null){
+            dispatch({type: 'LOAD_BASE'});
+        }
+
+        const account = sessionStorage.getItem('account');
+        console.log("==account==",account)
+        if(account && JSON.parse(account)){
+            dispatch({type: 'SET_ALLACCOUNTS',payload:JSON.parse(account)});
         }
     }, []);
      useEffect(() => {
-
          if (maincontract == null ) return;
          const queryList = async () => {
              setLoading(true);
              await apiInterface.main.listServicesProvider(maincontract).then(data => {
-                 console.error("====maincontract/listServicesProvider====",data)
                  if (data) {
                      setlist(data)
                      sessionStorage.setItem("myserviceList",JSON.stringify(data))

@@ -17,26 +17,26 @@ export default function Usage(props) {
     const [info, setInfo] = useState([]);
     const [uuid, setUuid] = useState('');
     const [sum, setSum] = useState(0);
-    // const [detail,setdetail]= useState([]);
-    //     useEffect(() => {
-    //     const setInitBase = async () => {
-    //         setLoading(true);
-    //         await apiInterface.base.InitBase(state, dispatch).then(()=>{
-    //             setLoading(false);
-    //         });
-    //     };
-    //     setInitBase();
-    // }, []);
+
     const [loading,setLoading]= useState(false);
      useEffect(() => {
-
+         if(maincontract==null){
+             dispatch({type: 'LOAD_MAINCONTRACT'});
+         }
+         if(basecontract==null){
+             dispatch({type: 'LOAD_BASE'});
+         }
+         const account = sessionStorage.getItem('account');
+         if(account && JSON.parse(account)){
+             dispatch({type: 'SET_ALLACCOUNTS',payload:JSON.parse(account)});
+         }
          const queryList = async () => {
              setLoading(true);
              let listStorage = JSON.parse(sessionStorage.getItem("serviceList"));
+             console.log("----listStorage",listStorage,listStorage[0].uuid)
              setLoading(false);
              if(listStorage.length){
                  setlist(listStorage)
-                 queryUserData(listStorage[0].uuid);
                  setUuid(listStorage[0].uuid)
 
              }else{
@@ -48,10 +48,16 @@ export default function Usage(props) {
          };
          queryList();
     }, []);
+    useEffect(() => {
+        if(maincontract==null || allAccounts==null ||basecontract==null)return;
+        queryUserData(uuid)
+    },[uuid,maincontract,allAccounts,basecontract]);
      const queryUserData = async (thisuuid) =>{
          setLoading(true);
          let arr = [];
+         console.log("==fdsafdfds",thisuuid)
          await apiInterface.base.queryServiceByUuid(basecontract,thisuuid).then(data => {
+             console.log("===--9900-",data)
              if (data) {
                 arr = data;
                  let byUserKey = arr.filter(item=>item.user_key === allAccounts[0].address)
@@ -68,7 +74,6 @@ export default function Usage(props) {
      }
      const selectService = async (thisuuid) =>{
          setUuid(thisuuid)
-         queryUserData(thisuuid)
      }
      const timeToTimestamp = (time)=>{
          let stime= parseInt(time.replace(/,/g,''));
@@ -91,7 +96,7 @@ export default function Usage(props) {
                             <ul className="lftList">
                                 {
                                     !!list.length && list.map(item=>(
-                                        <li key={item.uuid} onClick={()=>selectService(item.uuid)} className={uuid ===item.uuid?'active':''}>
+                                        <li key={`list_${item.uuid}`} onClick={()=>selectService(item.uuid)} className={uuid ===item.uuid?'active':''}>
                                             <span>{item.name}</span>
                                             <img src={uuid ===item.uuid?ArrowAct:Arrow} alt=""/>
                                         </li>
@@ -120,7 +125,7 @@ export default function Usage(props) {
                                 <tbody>
                                 {
                                     !!info.length && info.map((item)=>(
-                                        <tr key={item.uuid}>
+                                        <tr key={`info_${item.uuid}`}>
                                             <td>{publicJs.dateType(item.end_time)}</td>
                                             <td>{item.usage}</td>
                                             <td>{item.cost}</td>

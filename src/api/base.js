@@ -1,25 +1,30 @@
 import ConnectContract from './connectContract';
 import publicJs from "../utils/publicJs";
 import Accounts from "./Account";
-
+let loadMain = false;
 const {mainAddress }= window;
 let basecontract;
 const InitBase = async (state,dispatch) => {
 
-    const {apiState, api} = state;
+    const {apiState, api,basecontractState} = state;
 
     let account = await Accounts.accountAddress();
     if (apiState !== 'READY' || !account ) return;
+    const asyncLoadMain = async () => {
+        try {
+            basecontract = await ConnectContract(api, 'base', mainAddress.statistics);
+            dispatch({ type: 'SET_BASE', payload: basecontract });
 
-    try {
-        basecontract = await ConnectContract(api, 'base', mainAddress.statistics);
-        dispatch({ type: 'SET_BASE', payload: basecontract });
-
-    } catch (e) {
-        console.error(e);
-    }
-
-    return basecontract;
+        } catch (e) {
+            console.error(e);
+            dispatch({type: 'BASE_ERROR'});
+        }
+    };
+    if (basecontractState !== 'LOAD_BASE') return;
+    if (loadMain) return dispatch({type: 'SET_BASE', payload: basecontract});
+    loadMain = true;
+    asyncLoadMain();
+    // return basecontract;
 
 };
 
