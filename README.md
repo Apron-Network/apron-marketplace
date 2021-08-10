@@ -1,5 +1,28 @@
 # The marketplace frontend for Apron Network
 
+## Prerequisites
+Please install `Polkadot JS Extension` before you start. You can get it from here https://polkadot.js.org/extension/
+
+### Get Code
+Please get the code from `https://github.com/Apron-Network/marketplace_before_build`
+
+```
+git clone https://github.com/Apron-Network/marketplace_before_build.git
+```
+
+### Config
+Please find the correct address for `services_market`a nd `services_statistics`, and update the correct address in `public/configAddress.js`.
+```
+window.mainAddress = {
+    market: "<services market address>",
+    statistics: "<services statistics address>",
+    basepath: "<NODE RPC>"
+};
+```
+
+`<services market address>` and `<services market address>` is the contract's address after the contracts are deployed.
+`<NODE RPC>` is the websocket RPC provided by  Node. If you run it locally, it should be `ws://127.0.0.1:9944` by default.
+
 ## Available Scripts
 
 In the project directory, you can run:
