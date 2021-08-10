@@ -6,4 +6,25 @@ const formatResult =  (result) =>{
     return str;
 }
 
-export default{ formatResult }
+
+const  dateType = (timestamp) => {
+
+    let timeAfter = parseInt(timestamp.replace(/,/g,''));
+    let d = new Date( timeAfter * 1000);
+
+    let yyyy = d.getFullYear() + '-';
+
+    let MM = (d.getMonth()+1 < 10 ? '0'+(d.getMonth()+1) : d.getMonth()+1) + '-';
+
+    let dd = d.getDate() + ' ';
+
+    let HH = d.getHours() + ':';
+
+    let mm = d.getMinutes() + ':';
+
+    let ss = d.getSeconds();
+
+    return yyyy + MM + dd + HH + mm + ss;
+}
+
+export default{ formatResult, dateType }

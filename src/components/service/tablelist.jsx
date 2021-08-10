@@ -8,7 +8,7 @@ export default function Tablelist(props) {
             <table cellPadding="0" cellSpacing="0">
                 <thead>
                 <tr>
-                    <th>NAME</th>
+                    <th>TIER</th>
                     <th>DESCRIPTION</th>
                     <th>TYPE</th>
                     <th>PRICE</th>

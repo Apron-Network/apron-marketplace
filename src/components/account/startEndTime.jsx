@@ -23,6 +23,11 @@ export default function StartEndTime(props) {
     const handleChangeEndTime = (event) => {
         setendTime(event._d)
     }
+    const submitDate = () =>{
+        var startTimestamp = Date.parse(new Date(startTime))
+        var endTimestamp = Date.parse(new Date(endTime))
+       props.setTime(startTimestamp,endTimestamp)
+    }
     return (<div className="flextime">
 
         <div>
@@ -30,8 +35,8 @@ export default function StartEndTime(props) {
                 onChange={handleChangeStartTime}
                 value={startTime}
                 isValidDate={ validstart }
-                timeFormat={false}
-                inputProps={{ placeholder: "Start Date" }}
+                timeFormat={true}
+                inputProps={{ placeholder: "Start Time" }}
             />
             <img src={iconDate} alt=""/>
         </div>
@@ -40,13 +45,13 @@ export default function StartEndTime(props) {
              <Datetime
                  onChange={handleChangeEndTime}
                  value={endTime}
-                 timeFormat={false}
+                 timeFormat={true}
                  isValidDate={ validend }
-                 inputProps={{ placeholder: "end Date" }}
+                 inputProps={{ placeholder: "end Time" }}
              />
              <img src={iconDate} alt=""/>
          </div>
-
+        <button className="createNew" onClick={submitDate}>submit</button>
     </div>);
 }
 

@@ -27,11 +27,21 @@ const value = 0;
 const gasLimit = -1;
 
 
-const getList= async (basecontract,userkey) => {
+// const getList= async (basecontract,userkey) => {
+//     const AccountId = await Accounts.accountAddress();
+//     if (basecontract === null || !basecontract || !basecontract.query || !AccountId) return;
+//
+//     let nameResult = await basecontract.query.queryByUserKey(AccountId, {value, gasLimit},userkey);
+//     nameResult = publicJs.formatResult(nameResult);
+//     return nameResult;
+//
+// };
+//
+const queryServiceByUuid= async (basecontract,uuid) => {
     const AccountId = await Accounts.accountAddress();
     if (basecontract === null || !basecontract || !basecontract.query || !AccountId) return;
 
-    let nameResult = await basecontract.query.queryByUserKey(AccountId, {value, gasLimit},userkey);
+    let nameResult = await basecontract.query.queryByServiceUuid(AccountId, {value, gasLimit},uuid);
     nameResult = publicJs.formatResult(nameResult);
     return nameResult;
 
@@ -39,5 +49,5 @@ const getList= async (basecontract,userkey) => {
 
 export default {
     InitBase,
-    getList
+    queryServiceByUuid
 }

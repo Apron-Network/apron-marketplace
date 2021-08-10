@@ -261,6 +261,7 @@ footer{
    font-size: 16px;
    border-bottom: 1px solid rgb(230, 230, 235);
    padding: 15px 0;
+   cursor: pointer;
    &.active{
      color: #205fee;
      border-bottom: 1px solid #205fee;
@@ -280,6 +281,10 @@ footer{
   &>div{
     margin:0 20px;
     position: relative;
+    width: 45%;
+    input{
+      height: 41px;
+    }
     &:first-child{
       margin-left: 0;
     }
@@ -296,5 +301,14 @@ footer{
   span{
     font-family: SF-Pro-Display-Bold;
     padding-left: 10px;
+  }
+}
+.balanceRht{
+  margin-left: 20px;
+}
+.contenttable{
+  .contenttable{
+    margin: 0;
+    padding: 0;
   }
 }

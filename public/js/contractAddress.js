@@ -1,6 +1,6 @@
 const mainAddress = {
-    market: "5DcR98pHokK1dAkfogC4buwrintRnrAje7HKsUz4TXNds7mz" ,
-    statistics:'5Gx5JityZaUB1ybsCxLRSV3zLrWXaHX7VyDY1j8tZm6iG9AS',
+    market: "5GtMaYJc7kx9NYpUpzibiCLz5NzEyZCPvBXGMveh4jZFEJkh",
+    statistics:'5EMwZbKpLL17t1K6ijtcQXwtLPoJ1gT8o8QhJq9umebeZ3wM',
     basepath:'47.242.250.114',
     name:'Apron'
 };

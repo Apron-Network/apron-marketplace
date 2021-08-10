@@ -25,8 +25,7 @@ const queryServiceByUuid = async (maincontract,id) => {
     return data;
 
 };
-
-const listServicesProvider = async (maincontract,id) => {
+const listServicesProvider = async (maincontract) => {
     const AccountId = await Accounts.accountAddress();
     if (maincontract === null || !maincontract || !maincontract.query || !AccountId) return;
 

@@ -5,13 +5,8 @@ export default function Advantage(props) {
     return(<div className="borderBR brdr">
           <div className="contentbg">
                 <dl>
-                    <dt>SERVICE USAGE</dt>
+                    <dt className="titleName">SERVICE USAGE</dt>
                     <dd>{info.usage}</dd>
-                </dl>
-
-                <dl>
-                    <dt>SERVICE DELAIMER</dt>
-                    <dd>{info.declaimer}</dd>
                 </dl>
             </div>
 

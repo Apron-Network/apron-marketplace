@@ -16,7 +16,7 @@ export default function Marketlist(props) {
     const [loading, setLoading] = useState(false);
 
     const handleToservice=(id,type)=>{
-        if(type==="home"){
+        if(type === "home"){
             props.history.push(`/service/${id}`)
         }else{
             props.history.push(`/myservice/${id}`)
@@ -64,12 +64,12 @@ export default function Marketlist(props) {
         //     }
         // });
 
-        await apiInterface.main.addService(obj).then( (data) => {
-            console.log("====",data)
-            if(data){
-                window.location.reload();
-            }
-        });
+        // await apiInterface.main.addService(obj).then( (data) => {
+        //     console.log("====",data)
+        //     if(data){
+        //         window.location.reload();
+        //     }
+        // });
 
     }
     const handleShow = () => setShow(true);
@@ -272,30 +272,10 @@ export default function Marketlist(props) {
 
 
                 <ul>
-                    <li className="listli1Brdr">
-                        <div className="firstRow">
-                            <div className="title">INFRASTRUCTURE SERVICE NETWORK</div>
-                            <div className="details"  onClick={()=>handleToservice(423,type)}><span>View Details</span><img src={Arrow} alt=""/></div>
-                        </div>
-                        <div className="listli1">
-                            <div className="listLft">
-                                <img
-                                    src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3155998395,3600507640&fm=26&gp=0.jpg"
-                                    alt="" />
-                            </div>
-                            <div className="listRht">
-                                <div className="rhtcontent">A decentralized platform that provides infrastructure
-                                    services for DApp developers,DApp users,and operators.A decentralized platform that
-                                    provides infrastructure services for DApp developers,DApp users,and operators.
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-
                     {
                         list && list.map((item,index)=>(<li key={`item_${index}`} className="listli1Brdr">
                             <div className="firstRow">
+                                <div className="title">{item.name}</div>
                                 <div className="details"  onClick={()=>handleToservice(item.uuid,type)}><span>View Details</span><img src={Arrow} alt=""/></div>
                             </div>
                             <div className="listli1">
@@ -305,7 +285,7 @@ export default function Marketlist(props) {
                                         alt={item.name} />
                                 </div>
                                 <div className="listRht">
-                                    <div className="title">{item.name}</div>
+
                                     <div className="rhtcontent">{item.desc}</div>
                                 </div>
                             </div>

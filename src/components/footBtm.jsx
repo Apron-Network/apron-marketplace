@@ -13,7 +13,6 @@ const FootBtm = ()=>{
     const {allAccounts} = state;
     useEffect(() => {
         if(allAccounts == null ) return
-        console.log(allAccounts)
     }, [allAccounts]);
 
     const exitAccount = ()=> {

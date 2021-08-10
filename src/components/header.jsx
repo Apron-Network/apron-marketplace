@@ -22,14 +22,25 @@ export default function Headertop(props) {
     const [balanceOf, setbalanceOf] = useState(0);
 
     useEffect(() => {
-        setshowHeader(createHashHistory.location.pathname !== '/');
+
         createHashHistory.listen((obj) => {
-            setshowHeader(createHashHistory.location.pathname !== '/')
+           console.log("====obj====createHashHistory===",obj.pathname)
+            if(obj.pathname.indexOf('myservice')>-1){
+                settype(1);
+                sessionStorage.setItem('type',type);
+            }else if(obj.pathname.indexOf('usage')>-1){
+                settype(2);
+                sessionStorage.setItem('type',type);
+            }else{
+                settype(0);
+                sessionStorage.setItem('type',type);
+            }
         });
-    }, [setshowHeader]);
+    }, []);
+
 
     useEffect(() => {
-        if(allAccounts == null ) return
+        if(allAccounts == null ) return;
         queryBalance(allAccounts)
     }, [allAccounts,maincontract,api]);
     useEffect(() => {
@@ -38,9 +49,10 @@ export default function Headertop(props) {
             setselected(selectedStorage)
         }
         let typeInit = sessionStorage.getItem('type');
-        if(typeInit!=null){
-            settype(parseInt(typeInit))
-        }
+        console.error("===sessionStorage.getItem('type')", JSON.parse(sessionStorage.getItem('type')))
+        // if(typeInit!=null){
+        //     settype(parseInt(typeInit))
+        // }
 
         dispatch({type: 'LOAD_MAINCONTRACT'});
 
@@ -68,13 +80,13 @@ export default function Headertop(props) {
     const closeTips = ()=>{
 
         setWalletTips(false);
-        settype(0)
-        sessionStorage.setItem('type',0);
+        settype(0);
+        sessionStorage.setItem('type',type);
+
         createHashHistory.push('/')
         window.location.reload()
     }
     const toLink = async (type,index) => {
-        console.log("===",allAccounts)
         if(allAccounts ==null || !allAccounts.length){
             setWalletTips(true)
             setTips("Please connect wallet")
@@ -87,8 +99,8 @@ export default function Headertop(props) {
         }else{
             createHashHistory.push(`/${type}`)
         }
-        settype(index)
-        sessionStorage.setItem('type',index);
+        settype(index);
+        sessionStorage.setItem('type',type);
     }
     const AddresstoShow = (address)=> {
 
@@ -177,7 +189,7 @@ export default function Headertop(props) {
                            {AddresstoShow(selected[0].address)}
                         </span>
                         {
-                            allAccounts !=null &&   <span className='balanceRht'>{balanceOf}</span>
+                            allAccounts !=null && <span className='balanceRht'>{balanceOf}</span>
                         }
 
                         {/*<Dropdown>*/}
