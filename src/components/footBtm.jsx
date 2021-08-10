@@ -29,7 +29,7 @@ const FootBtm = ()=>{
             <div>© 2021 Apron Network</div>
             <ul>
                 <li >
-                    <a href="http://apron.network/blog/" target="_blank">
+                    <a href="http://apron.network/blog/" target="_blank" rel="noreferrer">
                         <img src={docNor} alt="" className="noSel" />
                         <img src={docW} alt="" className="sel" />
                     </a>
