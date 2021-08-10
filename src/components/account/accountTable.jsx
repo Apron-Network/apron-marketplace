@@ -33,8 +33,6 @@ export default function AccountTable(props) {
 
     }, [maincontract]);
 
-
-    // const {list} = props;
     return (
         <div className="borderBR">
             <div className="contenttable">
@@ -43,7 +41,6 @@ export default function AccountTable(props) {
                     <tr>
                         <th>id</th>
                         <th>service name</th>
-                        {/*<th>service uuid</th>*/}
                         <th>start time</th>
                         <th>end time</th>
                         <th>usage</th>
@@ -57,11 +54,9 @@ export default function AccountTable(props) {
                             <tr key={`accountTable_${item.id}`}>
                                 <td>{item.id}</td>
                                 <td className='hashref' onClick={()=>{handleToservice(item.service_uuid)}}>{item.service_name}</td>
-                                {/*<td>{item.service_uuid}</td>*/}
                                 <td>{formatData(item.start_time)}</td>
                                 <td>{formatData(item.end_time)}</td>
                                 <td>{item.sum}</td>
-                                {/*<td>{item.price_plan}</td>*/}
                                 <td>post-paid</td>
                                 <td>{item.cost}</td>
                             </tr>

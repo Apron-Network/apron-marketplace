@@ -33,7 +33,6 @@ export default function Usage(props) {
          const queryList = async () => {
              setLoading(true);
              let listStorage = JSON.parse(sessionStorage.getItem("serviceList"));
-             console.log("----listStorage",listStorage,listStorage[0].uuid)
              setLoading(false);
              if(listStorage.length){
                  setlist(listStorage)
@@ -55,9 +54,7 @@ export default function Usage(props) {
      const queryUserData = async (thisuuid) =>{
          setLoading(true);
          let arr = [];
-         console.log("==fdsafdfds",thisuuid)
          await apiInterface.base.queryServiceByUuid(basecontract,thisuuid).then(data => {
-             console.log("===--9900-",data)
              if (data) {
                 arr = data;
                  let byUserKey = arr.filter(item=>item.user_key === allAccounts[0].address)

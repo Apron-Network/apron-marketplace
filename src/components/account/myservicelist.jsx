@@ -19,7 +19,6 @@ export default function MyServiceList(props) {
         }
 
         const account = sessionStorage.getItem('account');
-        console.log("==account==",account)
         if(account && JSON.parse(account)){
             dispatch({type: 'SET_ALLACCOUNTS',payload:JSON.parse(account)});
         }
