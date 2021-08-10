@@ -4,10 +4,10 @@
 Please install `Polkadot JS Extension` before you start. You can get it from here https://polkadot.js.org/extension/
 
 ### Get Code
-Please get the code from `https://github.com/Apron-Network/marketplace_before_build`
+Please get the code from `https://github.com/Apron-Network/apron-marketplace`
 
 ```
-git clone https://github.com/Apron-Network/marketplace_before_build.git
+git clone https://github.com/Apron-Network/apron-marketplace.git
 ```
 
 ### Config
