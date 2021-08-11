@@ -21,10 +21,10 @@ export default function Usage(props) {
     const [loading,setLoading]= useState(false);
      useEffect(() => {
          if(maincontract==null){
-             dispatch({type: 'LOAD_MAINCONTRACT'});
+             dispatch({type: 'LOAD_MARKET'});
          }
          if(basecontract==null){
-             dispatch({type: 'LOAD_BASE'});
+             dispatch({type: 'LOAD_STATS'});
          }
          const account = sessionStorage.getItem('account');
          if(account && JSON.parse(account)){

@@ -51,7 +51,7 @@ export default function Headertop(props) {
         if(typeInit!=null){
             settype(parseInt(typeInit))
         }
-        dispatch({type: 'LOAD_MAINCONTRACT'});
+        dispatch({type: 'LOAD_MARKET'});
 
         if(!allAccounts && selectedStorage){
             dispatch({type: 'SET_ALLACCOUNTS',payload:selectedStorage});

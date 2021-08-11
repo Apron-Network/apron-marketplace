@@ -41,10 +41,10 @@ export default function Marketlist(props) {
 
     useEffect( () => {
         if(maincontract == null && apiState === 'READY'){
-            dispatch({type: 'LOAD_MAINCONTRACT'});
+            dispatch({type: 'LOAD_MARKET'});
         }
         if(basecontract==null){
-            dispatch({type: 'LOAD_BASE'});
+            dispatch({type: 'LOAD_STATS'});
         }
         const queryList = async () => {
             setLoading(true);

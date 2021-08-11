@@ -13,15 +13,15 @@ const InitBase = async (state, dispatch) => {
     const asyncLoadMain = async () => {
         try {
             basecontract = await ConnectContract(api, 'stats', configuration.statistics);
-            dispatch({ type: 'SET_BASE', payload: basecontract });
+            dispatch({ type: 'SET_STATS', payload: basecontract });
 
         } catch (e) {
             console.error(e);
             dispatch({ type: 'BASE_ERROR' });
         }
     };
-    if (basecontractState !== 'LOAD_BASE') return;
-    if (loadMain) return dispatch({ type: 'SET_BASE', payload: basecontract });
+    if (basecontractState !== 'LOAD_STATS') return;
+    if (loadMain) return dispatch({ type: 'SET_STATS', payload: basecontract });
     loadMain = true;
     asyncLoadMain();
     // return basecontract;

@@ -16,7 +16,7 @@ export default function Home(props) {
 
     useEffect(() => {
         if(maincontract==null){
-            dispatch({type: 'LOAD_MAINCONTRACT'});
+            dispatch({type: 'LOAD_MARKET'});
         }
         if(!allAccounts && account){
             dispatch({type: 'SET_ALLACCOUNTS',payload:account});
@@ -41,7 +41,7 @@ export default function Home(props) {
          };
          queryList();
 
-         dispatch({type: 'LOAD_BASE'});
+         dispatch({type: 'LOAD_STATS'});
 
     }, [allAccounts,maincontract]);
 

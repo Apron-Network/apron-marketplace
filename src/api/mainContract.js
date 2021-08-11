@@ -12,14 +12,14 @@ export default async function mainConnect(state, dispatch) {
 
         try {
             maincontract = await ConnectContract(api, 'market', configuration.market);
-            dispatch({type: 'SET_MAINCONTRACT', payload: maincontract});
+            dispatch({type: 'SET_MARKET', payload: maincontract});
         } catch (e) {
             console.error(e);
             dispatch({type: 'MAINCONTRACT_ERROR'});
         }
     };
-    if (maincontractState !== 'LOAD_MAINCONTRACT') return;
-    if (loadMain) return dispatch({type: 'SET_MAINCONTRACT', payload: maincontract});
+    if (maincontractState !== 'LOAD_MARKET') return;
+    if (loadMain) return dispatch({type: 'SET_MARKET', payload: maincontract});
     loadMain = true;
     asyncLoadMain();
 }
