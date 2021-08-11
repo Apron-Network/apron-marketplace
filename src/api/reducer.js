@@ -15,13 +15,13 @@ const reducer = (state, action) => {
 
         //main contract
         case 'LOAD_MARKET':
-            return { ...state, maincontractState: 'LOAD_MARKET' };
+            return { ...state, marketcontractState: 'LOAD_MARKET' };
 
         case 'SET_MARKET':
-            return { ...state, marketcontract: action.payload, maincontractState: 'READY' };
+            return { ...state, marketcontract: action.payload, marketcontractState: 'READY' };
 
         case 'MAINCONTRACT_ERROR':
-            return { ...state, marketcontract: null, maincontractState: 'ERROR' };
+            return { ...state, marketcontract: null, marketcontractState: 'ERROR' };
 
         //accounts
         case 'LOAD_ALLACCOUNTS':
@@ -35,13 +35,13 @@ const reducer = (state, action) => {
 
         //base
         case 'LOAD_STATS':
-            return { ...state, basecontractState: 'LOAD_STATS' };
+            return { ...state, statscontractState: 'LOAD_STATS' };
 
         case 'SET_STATS':
-            return { ...state, statscontract: action.payload, basecontractState: 'READY' };
+            return { ...state, statscontract: action.payload, statscontractState: 'READY' };
 
         case 'BASE_ERROR':
-            return { ...state, statscontract: null, basecontractState: 'ERROR' };
+            return { ...state, statscontract: null, statscontractState: 'ERROR' };
 
         case 'SET_MSG':
             return { ...state, message: action.payload };

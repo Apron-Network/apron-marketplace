@@ -5,7 +5,7 @@ let marketcontract;
 const  {configuration} = window;
 export default async function mainConnect(state, dispatch) {
 
-    const {apiState, api, maincontractState} = state;
+    const {apiState, api, marketcontractState} = state;
     let account = JSON.parse(sessionStorage.getItem('account'));
     if (apiState !== 'READY' || (account && !account.length)) return;
     const asyncLoadMain = async () => {
@@ -18,7 +18,7 @@ export default async function mainConnect(state, dispatch) {
             dispatch({type: 'MAINCONTRACT_ERROR'});
         }
     };
-    if (maincontractState !== 'LOAD_MARKET') return;
+    if (marketcontractState !== 'LOAD_MARKET') return;
     if (loadMain) return dispatch({type: 'SET_MARKET', payload: marketcontract});
     loadMain = true;
     asyncLoadMain();

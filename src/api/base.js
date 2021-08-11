@@ -6,7 +6,7 @@ const { configuration } = window;
 let statscontract;
 const InitBase = async (state, dispatch) => {
 
-    const { apiState, api, basecontractState } = state;
+    const { apiState, api, statscontractState } = state;
 
     let account = await Accounts.accountAddress();
     if (apiState !== 'READY' || !account) return;
@@ -20,7 +20,7 @@ const InitBase = async (state, dispatch) => {
             dispatch({ type: 'BASE_ERROR' });
         }
     };
-    if (basecontractState !== 'LOAD_STATS') return;
+    if (statscontractState !== 'LOAD_STATS') return;
     if (loadMain) return dispatch({ type: 'SET_STATS', payload: statscontract });
     loadMain = true;
     asyncLoadMain();

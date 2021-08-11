@@ -7,10 +7,10 @@ module.exports = {
     allAccounts: null,
     allaccountsState: null,
 
-    maincontractState: null,
+    marketcontractState: null,
     marketcontract:null,
 
-    basecontractState: null,
+    statscontractState: null,
     statscontract:null,
 
     message:null
