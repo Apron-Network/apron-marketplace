@@ -45,9 +45,12 @@ export default function Marketlist(props) {
             setLoading(true);
             let list = JSON.parse(sessionStorage.getItem("serviceList"));
             if(list){
-                let data = list.filter(item => item.uuid === props.match.params.id);
-                setInfo(data[0])
-                console.log(data[0].price_plan)
+                let data = list.filter(item => item.uuid === props.match.params.id)[0];
+                let domainname = props.match.params.id.replace(/_/g, '.');
+                data.entrypoint = `${data.schema}://${domainname}/v1/${allAccounts[0].address}`;
+                setInfo(data);
+                // setInfo(data[0])
+                // console.log(data[0].price_plan)
             }else{
                 props.history.push("/");
             }
@@ -78,7 +81,10 @@ export default function Marketlist(props) {
                                         <div>SP Account: {info.provider_owner}</div>
                                         <div className="rhtcontent">{info.desc}</div>
 
-                                        <div>Your Entry Point: <span className='copied' title={`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>
+                                        {/* <div>Your Entry Point: <span className='copied' title={`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div> */}
+                                        
+                                        <div>Your Entry Point: <span className='copied' title={`${info.entrypoint}`} onClick={()=>copyId(`${info.entrypoint}`)}>{`${info.entrypoint}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.entrypoint}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>
+
                                         <Alert show={show} variant="primary" onClose={() => setShow(false)} dismissible>copied to clipboard!
                                         </Alert>
                                     </div>
