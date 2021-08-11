@@ -41,15 +41,15 @@ const initState = {...INIT_STATE};
 const SubstrateContextProvider = (props) => {
     const [state, dispatch] = useReducer(reducer, initState);
     console.log("=====state=====",state);
-    const {api,maincontract,basecontract} = state;
+    const {api,marketcontract,statscontract} = state;
 
     if(api == null ) {
         connect(state, dispatch);
     }
-    if(maincontract == null) {
+    if(marketcontract == null) {
         mainConnect(state, dispatch)
     }
-    if(basecontract == null) {
+    if(statscontract == null) {
         InitBase.InitBase(state, dispatch)
     }
 

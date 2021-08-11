@@ -7,7 +7,7 @@ import titleFront from "./images/Dec.svg";
 
 export default function Home(props) {
     const {state,dispatch} = useSubstrate();
-    const {maincontract,allAccounts,api} = state;
+    const {marketcontract,allAccounts,api} = state;
     const [list, setlist] = useState([]);
 
     const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ export default function Home(props) {
     const account = JSON.parse(sessionStorage.getItem('account'));
 
     useEffect(() => {
-        if(maincontract==null){
+        if(marketcontract==null){
             dispatch({type: 'LOAD_MARKET'});
         }
         if(!allAccounts && account){
@@ -26,12 +26,12 @@ export default function Home(props) {
 
      useEffect(() => {
 
-         if (maincontract == null ) return;
+         if (marketcontract == null ) return;
 
 
          const queryList = async () => {
              setLoading(true);
-             await apiInterface.main.listServices(maincontract).then(data => {
+             await apiInterface.main.listServices(marketcontract).then(data => {
                  if (data) {
                      setlist(data)
                      sessionStorage.setItem("serviceList",JSON.stringify(data))
@@ -43,7 +43,7 @@ export default function Home(props) {
 
          dispatch({type: 'LOAD_STATS'});
 
-    }, [allAccounts,maincontract]);
+    }, [allAccounts,marketcontract]);
 
     return (<div>
         <Loading showLoading={loading} tips='Initialize home page'/>

@@ -11,7 +11,7 @@ const createHashHistory = history.createHashHistory();
 
 export default function Headertop(props) {
     const {state,dispatch} = useSubstrate();
-    const {maincontract,allAccounts,api} = state;
+    const {marketcontract,allAccounts,api} = state;
 
     const [walletTips, setWalletTips] = useState(false);
     const [tips, setTips] = useState('');
@@ -41,7 +41,7 @@ export default function Headertop(props) {
     useEffect(() => {
         if(allAccounts == null ) return;
         queryBalance(allAccounts)
-    }, [allAccounts,maincontract,api]);
+    }, [allAccounts,marketcontract,api]);
     useEffect(() => {
         let selectedStorage = JSON.parse(sessionStorage.getItem('account'));
         if (selectedStorage) {

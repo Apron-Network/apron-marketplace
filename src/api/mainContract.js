@@ -1,6 +1,6 @@
 import ConnectContract from './connectContract';
 let loadMain = false;
-let maincontract;
+let marketcontract;
 
 const  {configuration} = window;
 export default async function mainConnect(state, dispatch) {
@@ -11,15 +11,15 @@ export default async function mainConnect(state, dispatch) {
     const asyncLoadMain = async () => {
 
         try {
-            maincontract = await ConnectContract(api, 'market', configuration.market);
-            dispatch({type: 'SET_MARKET', payload: maincontract});
+            marketcontract = await ConnectContract(api, 'market', configuration.market);
+            dispatch({type: 'SET_MARKET', payload: marketcontract});
         } catch (e) {
             console.error(e);
             dispatch({type: 'MAINCONTRACT_ERROR'});
         }
     };
     if (maincontractState !== 'LOAD_MARKET') return;
-    if (loadMain) return dispatch({type: 'SET_MARKET', payload: maincontract});
+    if (loadMain) return dispatch({type: 'SET_MARKET', payload: marketcontract});
     loadMain = true;
     asyncLoadMain();
 }

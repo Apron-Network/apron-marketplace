@@ -3,7 +3,7 @@ import publicJs from "../utils/publicJs";
 import Accounts from "./Account";
 let loadMain = false;
 const { configuration } = window;
-let basecontract;
+let statscontract;
 const InitBase = async (state, dispatch) => {
 
     const { apiState, api, basecontractState } = state;
@@ -12,8 +12,8 @@ const InitBase = async (state, dispatch) => {
     if (apiState !== 'READY' || !account) return;
     const asyncLoadMain = async () => {
         try {
-            basecontract = await ConnectContract(api, 'stats', configuration.statistics);
-            dispatch({ type: 'SET_STATS', payload: basecontract });
+            statscontract = await ConnectContract(api, 'stats', configuration.statistics);
+            dispatch({ type: 'SET_STATS', payload: statscontract });
 
         } catch (e) {
             console.error(e);
@@ -21,10 +21,10 @@ const InitBase = async (state, dispatch) => {
         }
     };
     if (basecontractState !== 'LOAD_STATS') return;
-    if (loadMain) return dispatch({ type: 'SET_STATS', payload: basecontract });
+    if (loadMain) return dispatch({ type: 'SET_STATS', payload: statscontract });
     loadMain = true;
     asyncLoadMain();
-    // return basecontract;
+    // return statscontract;
 
 };
 
@@ -32,21 +32,21 @@ const value = 0;
 const gasLimit = -1;
 
 
-// const getList= async (basecontract,userkey) => {
+// const getList= async (statscontract,userkey) => {
 //     const AccountId = await Accounts.accountAddress();
-//     if (basecontract === null || !basecontract || !basecontract.query || !AccountId) return;
+//     if (statscontract === null || !statscontract || !statscontract.query || !AccountId) return;
 //
-//     let nameResult = await basecontract.query.queryByUserKey(AccountId, {value, gasLimit},userkey);
+//     let nameResult = await statscontract.query.queryByUserKey(AccountId, {value, gasLimit},userkey);
 //     nameResult = publicJs.formatResult(nameResult);
 //     return nameResult;
 //
 // };
 //
-const queryServiceByUuid = async (basecontract, uuid) => {
+const queryServiceByUuid = async (statscontract, uuid) => {
     const AccountId = await Accounts.accountAddress();
-    if (basecontract === null || !basecontract || !basecontract.query || !AccountId) return;
+    if (statscontract === null || !statscontract || !statscontract.query || !AccountId) return;
 
-    let nameResult = await basecontract.query.queryByServiceUuid(AccountId, { value, gasLimit }, uuid);
+    let nameResult = await statscontract.query.queryByServiceUuid(AccountId, { value, gasLimit }, uuid);
     nameResult = publicJs.formatResult(nameResult);
     return nameResult;
 

@@ -4,7 +4,7 @@ import {useSubstrate} from "../../api/contracts";
 export default function AccountTable(props) {
 
     const {state,dispatch} = useSubstrate();
-    const {maincontract} = state;
+    const {marketcontract} = state;
 
     const [mylist, setmylist] = useState([]);
 
@@ -23,7 +23,7 @@ export default function AccountTable(props) {
         const queryList = async () => {
             let arr= props.list ;
             for(let item of arr ){
-                await apiInterface.main.queryServiceByUuid(maincontract,item.service_uuid).then(data=>{
+                await apiInterface.main.queryServiceByUuid(marketcontract,item.service_uuid).then(data=>{
                     item.service_name = data.name
                 });
             }
@@ -31,7 +31,7 @@ export default function AccountTable(props) {
         };
         queryList();
 
-    }, [maincontract]);
+    }, [marketcontract]);
 
     return (
         <div className="borderBR">

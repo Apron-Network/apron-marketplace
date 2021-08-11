@@ -13,7 +13,7 @@ const  {configuration} = window;
 
 export default function Marketlist(props) {
     const {state, dispatch} = useSubstrate();
-    const {maincontract, apiState,allAccounts,basecontract} = state;
+    const {marketcontract, apiState,allAccounts,statscontract} = state;
 
 
     const [loading,setLoading]= useState(false);
@@ -40,10 +40,10 @@ export default function Marketlist(props) {
     }
 
     useEffect( () => {
-        if(maincontract == null && apiState === 'READY'){
+        if(marketcontract == null && apiState === 'READY'){
             dispatch({type: 'LOAD_MARKET'});
         }
-        if(basecontract==null){
+        if(statscontract==null){
             dispatch({type: 'LOAD_STATS'});
         }
         const queryList = async () => {
@@ -60,13 +60,13 @@ export default function Marketlist(props) {
 
         };
         queryList();
-    }, [maincontract,apiState]);
+    }, [marketcontract,apiState]);
     useEffect( () => {
-        if(maincontract == null && apiState === 'READY') return;
+        if(marketcontract == null && apiState === 'READY') return;
 
         const queryRevenue = async () => {
             setLoading(true);
-            await apiInterface.base.queryServiceByUuid(basecontract,props.match.params.id).then(data => {
+            await apiInterface.base.queryServiceByUuid(statscontract,props.match.params.id).then(data => {
                 if (data) {
                     setRevenue(data)
                 }
@@ -75,7 +75,7 @@ export default function Marketlist(props) {
         };
         queryRevenue();
 
-    }, [maincontract,apiState,allAccounts,basecontract]);
+    }, [marketcontract,apiState,allAccounts,statscontract]);
 
     return(
         <div className="container">

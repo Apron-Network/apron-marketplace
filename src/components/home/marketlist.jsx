@@ -11,7 +11,7 @@ import Arrow from "../../images/Icon_Arrow_Nor.svg";
 export default function Marketlist(props) {
 
     const {state,dispatch} = useSubstrate();
-    const {maincontract} = state;
+    const {marketcontract} = state;
 
     const [loading, setLoading] = useState(false);
 
@@ -56,7 +56,7 @@ export default function Marketlist(props) {
         setShow(false);
         setLoading(true);
 
-        // await apiInterface.main.setAddService(maincontract, obj, (data) => {
+        // await apiInterface.main.setAddService(marketcontract, obj, (data) => {
         //     if(data){
         //
         //         window.location.reload();

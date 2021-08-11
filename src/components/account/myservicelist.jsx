@@ -7,14 +7,14 @@ import titleFront from "../../images/Dec.svg";
 
 export default function MyServiceList(props) {
     const {state,dispatch} = useSubstrate();
-    const {maincontract,allAccounts,api,basecontract} = state;
+    const {marketcontract,allAccounts,api,statscontract} = state;
     const [list, setlist] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        if(maincontract==null){
+        if(marketcontract==null){
             dispatch({type: 'LOAD_MARKET'});
         }
-        if(basecontract==null){
+        if(statscontract==null){
             dispatch({type: 'LOAD_STATS'});
         }
 
@@ -24,10 +24,10 @@ export default function MyServiceList(props) {
         }
     }, []);
      useEffect(() => {
-         if (maincontract == null ) return;
+         if (marketcontract == null ) return;
          const queryList = async () => {
              setLoading(true);
-             await apiInterface.main.listServicesProvider(maincontract).then(data => {
+             await apiInterface.main.listServicesProvider(marketcontract).then(data => {
                  if (data) {
                      setlist(data)
                      sessionStorage.setItem("myserviceList",JSON.stringify(data))
@@ -37,7 +37,7 @@ export default function MyServiceList(props) {
          };
          queryList();
 
-    }, [allAccounts,maincontract]);
+    }, [allAccounts,marketcontract]);
 
     return (<div>
         <Loading showLoading={loading} tips='Initialize home page'/>

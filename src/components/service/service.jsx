@@ -12,7 +12,7 @@ const  {configuration} = window;
 
 export default function Marketlist(props) {
     const {state, dispatch} = useSubstrate();
-    const {maincontract, apiState,allAccounts} = state;
+    const {marketcontract, apiState,allAccounts} = state;
 
 
     const [loading,setLoading]= useState(false);
@@ -38,7 +38,7 @@ export default function Marketlist(props) {
     }
 
     useEffect( () => {
-        if(maincontract == null && apiState === 'READY'){
+        if(marketcontract == null && apiState === 'READY'){
             dispatch({type: 'LOAD_MARKET'});
         }
         const queryList = async () => {
@@ -54,7 +54,7 @@ export default function Marketlist(props) {
             setLoading(false);
         };
         queryList();
-    }, [maincontract,apiState]);
+    }, [marketcontract,apiState]);
 
     return(
         <div className="container">

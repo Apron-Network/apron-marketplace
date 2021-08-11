@@ -12,7 +12,7 @@ import publicJs from "../../utils/publicJs";
 
 export default function Usage(props) {
     const {state,dispatch} = useSubstrate();
-    const {maincontract,allAccounts,basecontract} = state;
+    const {marketcontract,allAccounts,statscontract} = state;
     const [list, setlist] = useState([]);
     const [info, setInfo] = useState([]);
     const [uuid, setUuid] = useState('');
@@ -20,10 +20,10 @@ export default function Usage(props) {
 
     const [loading,setLoading]= useState(false);
      useEffect(() => {
-         if(maincontract==null){
+         if(marketcontract==null){
              dispatch({type: 'LOAD_MARKET'});
          }
-         if(basecontract==null){
+         if(statscontract==null){
              dispatch({type: 'LOAD_STATS'});
          }
          const account = sessionStorage.getItem('account');
@@ -48,13 +48,13 @@ export default function Usage(props) {
          queryList();
     }, []);
     useEffect(() => {
-        if(maincontract==null || allAccounts==null ||basecontract==null)return;
+        if(marketcontract==null || allAccounts==null ||statscontract==null)return;
         queryUserData(uuid)
-    },[uuid,maincontract,allAccounts,basecontract]);
+    },[uuid,marketcontract,allAccounts,statscontract]);
      const queryUserData = async (thisuuid) =>{
          setLoading(true);
          let arr = [];
-         await apiInterface.base.queryServiceByUuid(basecontract,thisuuid).then(data => {
+         await apiInterface.base.queryServiceByUuid(statscontract,thisuuid).then(data => {
              if (data) {
                 arr = data;
                  let byUserKey = arr.filter(item=>item.user_key === allAccounts[0].address)
