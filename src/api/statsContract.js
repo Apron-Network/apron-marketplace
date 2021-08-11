@@ -18,7 +18,7 @@ export default async function statsConnect (state, dispatch) {
 
         } catch (e) {
             console.error(e);
-            dispatch({ type: 'BASE_ERROR' });
+            dispatch({ type: 'STATS_ERROR' });
         }
     };
     if (statscontractState !== 'LOAD_STATS') return;

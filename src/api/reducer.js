@@ -20,7 +20,7 @@ const reducer = (state, action) => {
         case 'SET_MARKET':
             return { ...state, marketcontract: action.payload, marketcontractState: 'READY' };
 
-        case 'MAINCONTRACT_ERROR':
+        case 'MARKET_ERROR':
             return { ...state, marketcontract: null, marketcontractState: 'ERROR' };
 
         //accounts
@@ -40,7 +40,7 @@ const reducer = (state, action) => {
         case 'SET_STATS':
             return { ...state, statscontract: action.payload, statscontractState: 'READY' };
 
-        case 'BASE_ERROR':
+        case 'STATS_ERROR':
             return { ...state, statscontract: null, statscontractState: 'ERROR' };
 
         case 'SET_MSG':

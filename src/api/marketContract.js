@@ -15,7 +15,7 @@ export default async function marketConnect(state, dispatch) {
             dispatch({type: 'SET_MARKET', payload: marketcontract});
         } catch (e) {
             console.error(e);
-            dispatch({type: 'MAINCONTRACT_ERROR'});
+            dispatch({type: 'MARKET_ERROR'});
         }
     };
     if (marketcontractState !== 'LOAD_MARKET') return;
