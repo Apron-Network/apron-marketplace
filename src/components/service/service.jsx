@@ -7,7 +7,7 @@ import Loading from "../loading/Loading";
 import {Alert} from "react-bootstrap";
 import titleFront from "../../images/Dec.svg";
 
-const  {mainAddress} = window;
+const  {configuration} = window;
 
 
 export default function Marketlist(props) {
@@ -78,7 +78,7 @@ export default function Marketlist(props) {
                                         <div>SP Account: {info.provider_owner}</div>
                                         <div className="rhtcontent">{info.desc}</div>
 
-                                        <div>Your Entry Point: <span className='copied' title={`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${mainAddress.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>
+                                        <div>Your Entry Point: <span className='copied' title={`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>
                                         <Alert show={show} variant="primary" onClose={() => setShow(false)} dismissible>copied to clipboard!
                                         </Alert>
                                     </div>

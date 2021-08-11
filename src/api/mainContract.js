@@ -2,7 +2,7 @@ import ConnectContract from './connectContract';
 let loadMain = false;
 let maincontract;
 
-const  {mainAddress} = window;
+const  {configuration} = window;
 export default async function mainConnect(state, dispatch) {
 
     const {apiState, api, maincontractState} = state;
@@ -11,7 +11,7 @@ export default async function mainConnect(state, dispatch) {
     const asyncLoadMain = async () => {
 
         try {
-            maincontract = await ConnectContract(api, 'market', mainAddress.market);
+            maincontract = await ConnectContract(api, 'market', configuration.market);
             dispatch({type: 'SET_MAINCONTRACT', payload: maincontract});
         } catch (e) {
             console.error(e);

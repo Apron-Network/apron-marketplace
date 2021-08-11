@@ -13,7 +13,7 @@ git clone https://github.com/Apron-Network/apron-marketplace.git
 ### Config
 Please find the correct address for `services_market`a nd `services_statistics`, and update the correct address in `public/configAddress.js`.
 ```
-window.mainAddress = {
+window.configuration = {
     market: "<services market address>",
     statistics: "<services statistics address>",
     basepath: "<NODE RPC>"

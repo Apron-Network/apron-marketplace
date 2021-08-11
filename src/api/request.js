@@ -27,9 +27,9 @@ const axiosInstance = () => {
   return instance;
 };
 
-const  {mainAddress} = window;
+const  {configuration} = window;
 
-const host = `${document.location.protocol}//${mainAddress.basepath}:8082/`;
+const host = `${document.location.protocol}//${configuration.basepath}:8082/`;
 
 const get = urlMethod => axiosInstance(host + urlMethod).get(host + urlMethod);
 

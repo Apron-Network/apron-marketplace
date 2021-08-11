@@ -6,9 +6,9 @@ import InitBase from './base'
 
 import {ApiPromise, WsProvider} from '@polkadot/api';
 
-const  {mainAddress} = window;
+const  {configuration} = window;
 
-const ws_server = `ws://${mainAddress.basepath}:9944`;
+const ws_server = `ws://${configuration.basepath}:9944`;
 
 const SubstrateContext = React.createContext();
 
