@@ -20,8 +20,8 @@ const ConnectContract = async (api, type, address) => {
       break;
 
   }
-  const mainContract = new ContractPromise(api, abi, address);
-  return mainContract;
+  const contract = new ContractPromise(api, abi, address);
+  return contract;
 }
 
 export default ConnectContract

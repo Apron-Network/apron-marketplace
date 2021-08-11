@@ -3,7 +3,7 @@ let loadMain = false;
 let marketcontract;
 
 const  {configuration} = window;
-export default async function mainConnect(state, dispatch) {
+export default async function marketConnect(state, dispatch) {
 
     const {apiState, api, marketcontractState} = state;
     let account = JSON.parse(sessionStorage.getItem('account'));
