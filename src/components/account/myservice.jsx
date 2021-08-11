@@ -64,6 +64,40 @@ export default function Marketlist(props) {
         };
         queryList();
     }, [marketcontract,apiState]);
+
+    const consolidate = (arr) => {
+        let listByDate = arr.map(item => { return {id:item.id, usage:parseInt(item.usage), cost:parseInt(item.cost), date:publicJs.toDate(item.start_time)} });
+        
+        let m = {};
+        listByDate.forEach( elem => {
+            if (elem.date in m) {
+                m[elem.date].usage += elem.usage;
+                m[elem.date].cost += elem.cost;
+            } else {
+                m[elem.date] = {
+                    id: elem.id,
+                    usage: elem.usage,
+                    cost: elem.cost
+                }
+            }
+        })
+        
+        let list = [];
+        for (const [key, value] of Object.entries(m)) {
+            console.log(`${key}: ${value}`);
+            list.push({
+                id: value.id,
+                date: key,
+                usage: value.usage,
+                cost: value.cost
+            })
+          }
+
+        console.log(list);
+
+        return list;
+    }
+
     useEffect( () => {
         if(marketcontract == null && apiState === 'READY') return;
 
@@ -71,7 +105,9 @@ export default function Marketlist(props) {
             setLoading(true);
             await apiInterface.stats.queryStatsByUuid(statscontract,props.match.params.id).then(data => {
                 if (data) {
-                    setRevenue(data)
+                    // setRevenue(data);
+                    let processedData = consolidate(data);
+                    setRevenue(processedData);
                 }
                 setLoading(false);
             });
@@ -140,9 +176,16 @@ export default function Marketlist(props) {
                                 </thead>
                                 <tbody>
                                 {
+                                    // !!revenue.length && revenue.map((item)=>(
+                                    //     <tr key={item.id}>
+                                    //         <td>{publicJs.dateType(item.end_time)}</td>
+                                    //         <td>{item.usage}</td>
+                                    //         <td>{item.cost}</td>
+                                    //     </tr>
+                                    // ))
                                     !!revenue.length && revenue.map((item)=>(
                                         <tr key={item.id}>
-                                            <td>{publicJs.dateType(item.end_time)}</td>
+                                            <td>{item.date}</td>
                                             <td>{item.usage}</td>
                                             <td>{item.cost}</td>
                                         </tr>

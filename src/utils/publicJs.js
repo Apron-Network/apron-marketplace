@@ -27,4 +27,16 @@ const  dateType = (timestamp) => {
     return yyyy + MM + dd + HH + mm + ss;
 }
 
-export default{ formatResult, dateType }
+const toDate = (timestamp) => {
+    let d = new Date( parseInt(timestamp.replace(/,/g,'')) * 1000);
+
+    let yyyy = d.getFullYear() + '-';
+
+    let MM = (d.getMonth()+1 < 10 ? '0'+(d.getMonth()+1) : d.getMonth()+1) + '-';
+
+    let dd = d.getDate();
+
+    return yyyy + MM + dd
+}
+
+export default{ formatResult, dateType, toDate }
