@@ -3,10 +3,10 @@ import Accounts from "./Account";
 
 const postUserkey = async () => {
     const AccountId = await Accounts.accountAddress();
-    let obj={
-        account_id:AccountId
+    let obj = {
+        account_id: AccountId
     }
-    const data = await request.post('/service/test_httpbin_service/keys/',obj);
+    const data = await request.post('/service/test_httpbin_service/keys/', obj);
 
     return data;
 };

@@ -1,4 +1,4 @@
-import market from  './market';
+import market from './market';
 import stats from './stats';
 import user from './user';
 

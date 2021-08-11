@@ -8,12 +8,12 @@ module.exports = {
     allaccountsState: null,
 
     marketcontractState: null,
-    marketcontract:null,
+    marketcontract: null,
 
     statscontractState: null,
-    statscontract:null,
+    statscontract: null,
 
-    message:null
+    message: null
 
 
 };

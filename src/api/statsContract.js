@@ -5,7 +5,7 @@ let loadMain = false;
 const { configuration } = window;
 let statscontract;
 
-export default async function statsConnect (state, dispatch) {
+export default async function statsConnect(state, dispatch) {
 
     const { apiState, api, statscontractState } = state;
 

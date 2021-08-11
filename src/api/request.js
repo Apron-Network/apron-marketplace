@@ -14,20 +14,20 @@ const axiosInstance = () => {
   }
   // instance.interceptors.request.use((request) => request);
   instance.interceptors.response.use(
-      (response) => {
-        if (response && response.status === 201) {
-          response.data = true
-        }
-        return response.data ? response.data : response;
-      }, (err) => {
+    (response) => {
+      if (response && response.status === 201) {
+        response.data = true
+      }
+      return response.data ? response.data : response;
+    }, (err) => {
 
-      },
+    },
   );
 
   return instance;
 };
 
-const  {configuration} = window;
+const { configuration } = window;
 
 const host = `${document.location.protocol}//${configuration.basepath}:8082/`;
 

@@ -13,7 +13,7 @@ const reducer = (state, action) => {
         case 'CONNECT_ERROR':
             return { ...state, apiState: 'ERROR', apiError: action.payload };
 
-        //main contract
+        //market
         case 'LOAD_MARKET':
             return { ...state, marketcontractState: 'LOAD_MARKET' };
 
@@ -33,7 +33,7 @@ const reducer = (state, action) => {
         case 'ALLACCOUNTS_ERROR':
             return { ...state, allAccounts: null, allaccountsState: 'ERROR' };
 
-        //base
+        //stats
         case 'LOAD_STATS':
             return { ...state, statscontractState: 'LOAD_STATS' };
 
