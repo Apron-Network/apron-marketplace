@@ -54,7 +54,7 @@ export default function Usage(props) {
      const queryUserData = async (thisuuid) =>{
          setLoading(true);
          let arr = [];
-         await apiInterface.base.queryServiceByUuid(statscontract,thisuuid).then(data => {
+         await apiInterface.stats.queryStatsByUuid(statscontract,thisuuid).then(data => {
              if (data) {
                 arr = data;
                  let byUserKey = arr.filter(item=>item.user_key === allAccounts[0].address)

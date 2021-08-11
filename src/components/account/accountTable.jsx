@@ -23,7 +23,7 @@ export default function AccountTable(props) {
         const queryList = async () => {
             let arr= props.list ;
             for(let item of arr ){
-                await apiInterface.main.queryServiceByUuid(marketcontract,item.service_uuid).then(data=>{
+                await apiInterface.market.queryStatsByUuid(marketcontract,item.service_uuid).then(data=>{
                     item.service_name = data.name
                 });
             }

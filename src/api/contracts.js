@@ -1,8 +1,8 @@
 import React, {useReducer, useContext} from 'react';
 import reducer from './reducer';
 import INIT_STATE from './initState';
-import mainConnect from './mainContract'
-import InitBase from './base'
+import mainConnect from './marketContract'
+import statsConnect from './statsContract'
 
 import {ApiPromise, WsProvider} from '@polkadot/api';
 
@@ -50,7 +50,7 @@ const SubstrateContextProvider = (props) => {
         mainConnect(state, dispatch)
     }
     if(statscontract == null) {
-        InitBase.InitBase(state, dispatch)
+        statsConnect(state, dispatch)
     }
 
 

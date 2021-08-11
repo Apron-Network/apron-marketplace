@@ -66,7 +66,7 @@ export default function Marketlist(props) {
 
         const queryRevenue = async () => {
             setLoading(true);
-            await apiInterface.base.queryServiceByUuid(statscontract,props.match.params.id).then(data => {
+            await apiInterface.stats.queryStatsByUuid(statscontract,props.match.params.id).then(data => {
                 if (data) {
                     setRevenue(data)
                 }

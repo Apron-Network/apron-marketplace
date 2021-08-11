@@ -31,7 +31,7 @@ export default function Home(props) {
 
          const queryList = async () => {
              setLoading(true);
-             await apiInterface.main.listServices(marketcontract).then(data => {
+             await apiInterface.market.listServices(marketcontract).then(data => {
                  if (data) {
                      setlist(data)
                      sessionStorage.setItem("serviceList",JSON.stringify(data))

@@ -16,11 +16,11 @@ const listServices = async (marketcontract) => {
 
 };
 
-const queryServiceByUuid = async (marketcontract,id) => {
+const queryStatsByUuid = async (marketcontract,id) => {
     const AccountId = await Accounts.accountAddress();
     if (marketcontract === null || !marketcontract || !marketcontract.query || !AccountId) return;
 
-    let data = await marketcontract.query.queryServiceByUuid(AccountId, {value, gasLimit},id);
+    let data = await marketcontract.query.queryStatsByUuid(AccountId, {value, gasLimit},id);
     data = publicJs.formatResult(data);
     return data;
 
@@ -76,7 +76,7 @@ const addService = async (obj) => {
 
 export default {
     listServices,
-    queryServiceByUuid,
+    queryStatsByUuid,
     listServicesProvider,
     setAddService,
     addService,

@@ -1,9 +1,9 @@
-import main from  './main';
+import market from  './market';
+import stats from './stats';
 import user from './user';
-import base from './base';
 
 export default {
-    main,
+    market,
+    stats,
     user,
-    base
 };

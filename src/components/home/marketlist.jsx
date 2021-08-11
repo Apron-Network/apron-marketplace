@@ -56,7 +56,7 @@ export default function Marketlist(props) {
         setShow(false);
         setLoading(true);
 
-        // await apiInterface.main.setAddService(marketcontract, obj, (data) => {
+        // await apiInterface.market.setAddService(marketcontract, obj, (data) => {
         //     if(data){
         //
         //         window.location.reload();
@@ -64,7 +64,7 @@ export default function Marketlist(props) {
         //     }
         // });
 
-        // await apiInterface.main.addService(obj).then( (data) => {
+        // await apiInterface.market.addService(obj).then( (data) => {
         //     console.log("====",data)
         //     if(data){
         //         window.location.reload();
