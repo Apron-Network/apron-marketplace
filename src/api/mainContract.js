@@ -11,7 +11,7 @@ export default async function mainConnect(state, dispatch) {
     const asyncLoadMain = async () => {
 
         try {
-            maincontract = await ConnectContract(api, 'main', mainAddress.market);
+            maincontract = await ConnectContract(api, 'market', mainAddress.market);
             dispatch({type: 'SET_MAINCONTRACT', payload: maincontract});
         } catch (e) {
             console.error(e);

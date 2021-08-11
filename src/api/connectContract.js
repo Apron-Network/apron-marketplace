@@ -1,22 +1,22 @@
 import { ContractPromise } from '@polkadot/api-contract';
 
-import mainAbi from '../abi/services_market';
-import baseAbi from '../abi/services_statistics';
+import marketAbi from '../abi/services_market';
+import statsAbi from '../abi/services_statistics';
 
 const ConnectContract = async (api,type,address) =>{
     if(!api){
       return
     }
     let abi;
-    abi = mainAbi;
+    abi = marketAbi;
     switch(type){
 
-        case'base':
-            abi = baseAbi;
+        case'stats':
+            abi = statsAbi;
             break;
         default:
-        case'main':
-            abi = mainAbi;
+        case'market':
+            abi = marketAbi;
             break;
 
     }

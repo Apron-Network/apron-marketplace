@@ -12,7 +12,7 @@ const InitBase = async (state,dispatch) => {
     if (apiState !== 'READY' || !account ) return;
     const asyncLoadMain = async () => {
         try {
-            basecontract = await ConnectContract(api, 'base', mainAddress.statistics);
+            basecontract = await ConnectContract(api, 'stats', mainAddress.statistics);
             dispatch({ type: 'SET_BASE', payload: basecontract });
 
         } catch (e) {
