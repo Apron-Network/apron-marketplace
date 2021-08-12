@@ -38,9 +38,11 @@ export default function Marketlist(props) {
     }
 
     useEffect( () => {
-        if(marketcontract == null && apiState === 'READY'){
+        if(allAccounts == null) return;
+        if(marketcontract == null && apiState === 'READY' ){
             dispatch({type: 'LOAD_MARKET'});
         }
+
         const queryList = async () => {
             setLoading(true);
             let list = JSON.parse(sessionStorage.getItem("serviceList"));
@@ -57,7 +59,7 @@ export default function Marketlist(props) {
             setLoading(false);
         };
         queryList();
-    }, [marketcontract,apiState]);
+    }, [marketcontract,apiState,allAccounts]);
 
     return(
         <div className="container">
@@ -82,7 +84,7 @@ export default function Marketlist(props) {
                                         <div className="rhtcontent">{info.desc}</div>
 
                                         {/* <div>Your Entry Point: <span className='copied' title={`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`} onClick={()=>copyId(`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)}>{`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.schema}://${configuration.basepath}:8080/v1/${info.uuid}/${allAccounts[0].address}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div> */}
-                                        
+
                                         <div>Your Entry Point: <span className='copied' title={`${info.entrypoint}`} onClick={()=>copyId(`${info.entrypoint}`)}>{`${info.entrypoint}`}</span> <span className='EntryPoint' onClick={()=>copyId(`${info.entrypoint}`)} ><i className='fa fa-copy'/>copied to clipboard!</span></div>
 
                                         <Alert show={show} variant="primary" onClose={() => setShow(false)} dismissible>copied to clipboard!

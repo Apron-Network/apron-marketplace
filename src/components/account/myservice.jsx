@@ -40,6 +40,7 @@ export default function Marketlist(props) {
     }
 
     useEffect( () => {
+        if(allAccounts == null) return;
         if(marketcontract == null && apiState === 'READY'){
             dispatch({type: 'LOAD_MARKET'});
         }
@@ -67,7 +68,7 @@ export default function Marketlist(props) {
 
     const consolidate = (arr) => {
         let listByDate = arr.map(item => { return {id:item.id, usage:parseInt(item.usage), cost:parseInt(item.cost), date:publicJs.toDate(item.start_time)} });
-        
+
         let m = {};
         listByDate.forEach( elem => {
             if (elem.date in m) {
@@ -81,7 +82,7 @@ export default function Marketlist(props) {
                 }
             }
         })
-        
+
         let list = [];
         for (const [key, value] of Object.entries(m)) {
             console.log(`${key}: ${value}`);
